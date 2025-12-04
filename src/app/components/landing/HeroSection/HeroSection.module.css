@@ -1,23 +1,27 @@
 .hero {
     padding: 4rem 0;
-    background-image: url('../../public/images/hero-photo.png');
+    background-image:
+        radial-gradient(circle, rgba(44, 30, 27, 0.5), rgba(0, 0, 0, 0.7)),
+        url('/images/hero-photo.jpg');
     background-size: cover;
     background-position: center;
     color: var(--foreground);
-    margin: 64px;
 }
 
 .hero h1 {
+    margin-left: 64px;
     color: var(--primary-yellow);
     margin-bottom: 48px;
 }
 
 .hero p {
+    margin-left: 64px;
     font-size: 24px;
     margin-bottom: 48px;
 }
 
 .hero Button {
+    margin-left: 64px;
     margin-bottom: 48px;
 }
 
