@@ -1,10 +1,120 @@
 .section {
     padding: 80px 0;
-    background-color: var(--background);
+    background-color: var(--brow);
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 24px;
+}
+
+.section h1 {
+    display: flex;
+    color: var(--primary-yellow);
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 48px;
+}
+
+.section .barbers {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.section .barberImgage1,
+.section .barberImgage2,
+.section .barberImgage3 {
+    width: 422px;
+    height: 392px;
+    border-radius: 16px;
+    position: relative;
+    background-size: cover;
+    background-position-x: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.section .barberImgage1 {
+    background-image: url('/images/barbers/barber-max.png');
+    margin-left: 64px;
+}
+
+.section .barberImgage2 {
+    background-image: url('/images/barbers/barber-kevin.png');
+}
+
+.section .barberImgage3 {
+    background-image: url('/images/barbers/barber-jake.png');
+    margin-right: 64px;
+}
+
+.hoverOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(27, 19, 17, 0.84);
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding: 24px;
+    text-align: left;
+    z-index: 10;
+}
+
+.section .barberImgage1:hover .hoverOverlay,
+.section .barberImgage2:hover .hoverOverlay,
+.section .barberImgage3:hover .hoverOverlay {
+    opacity: 1;
+}
+
+.hoverOverlay h3 {
+    color: var(--primary-yellow);
+    margin-bottom: 16px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.hoverOverlay p {
+    color: var(--white);
+    margin-bottom: 32px;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+/* Bottom info styles */
+.section .barberInfo1,
+.section .barberInfo2,
+.section .barberInfo3 {
+    width: 100%;
+    height: 88px;
+    background-color: rgba(27, 19, 17, 0.56);
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+    z-index: 5;
+}
+
+/* Hide bottom info on hover */
+.section .barberImgage1:hover .barberInfo1,
+.section .barberImgage2:hover .barberInfo2,
+.section .barberImgage3:hover .barberInfo3 {
+    opacity: 0;
+}
+
+.section .barberInfo1 h2,
+.section .barberInfo2 h2,
+.section .barberInfo3 h2 {
+    color: var(--primary-yellow);
 }
