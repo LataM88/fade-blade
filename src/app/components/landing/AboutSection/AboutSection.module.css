@@ -1,10 +1,95 @@
-.section {
+.about {
     padding: 80px 0;
-    background-color: var(--background);
+    background-color: var(--brown-secondary);
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 24px;
+}
+
+.about h1 {
+    display: flex;
+    color: var(--primary-yellow);
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 48px;
+}
+
+.aboutContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.aboutImage {
+    position: relative;
+}
+
+.aboutImage1 {
+    z-index: 1;
+    width: 539px;
+    height: 291px;
+    background-image: url('/images/about/about-photo1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-left: 64px;
+    border-radius: 24px;
+    filter: drop-shadow(-2px 2px 0px var(--primary-yellow));
+}
+
+.aboutImage2 {
+    z-index: 2;
+    width: 539px;
+    height: 291px;
+    background-image: url('/images/about/about-photo2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-top: 82px;
+    border-radius: 24px;
+    margin-left: -32px;
+    margin-right: -32px;
+    filter: drop-shadow(-2px 2px 0px var(--primary-yellow)) drop-shadow(2px 2px 0px var(--primary-yellow));
+}
+
+.aboutImage3 {
+    z-index: 1;
+    width: 539px;
+    height: 291px;
+    background-image: url('/images/about/about-photo3.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-right: 64px;
+    border-radius: 24px;
+    filter: drop-shadow(2px 2px 0px var(--primary-yellow));
+}
+
+.aboutText {
+    margin-left: 64px;
+    margin-right: 64px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.aboutDescription h3 {
+    color: var(--primary-yellow);
+}
+
+.aboutDescription1 {
+    margin-top: -64px;
+}
+
+.aboutDescription2 {
+    text-align: center;
+    margin-top: 32px;
+}
+
+.aboutDescription3 {
+    margin-top: -64px;
+    text-align: right;
 }
