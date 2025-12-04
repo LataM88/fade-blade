@@ -1,0 +1,10 @@
+.section {
+    padding: 80px 0;
+    background-color: var(--background);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}

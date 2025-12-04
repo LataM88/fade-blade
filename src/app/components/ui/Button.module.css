@@ -1,0 +1,19 @@
+.btn {
+    width: 284px;
+    height: 65px;
+    font-size: 24px;
+    font-weight: 600;
+    border-radius: 16px;
+    cursor: pointer;
+}
+
+.book-appointment {
+    background-color: var(--border-white-22);
+    color: var(--white);
+    border: 2px solid var(--primary-yellow);
+}
+
+.book-appointment:hover {
+    background-color: var(--primary-yellow);
+    color: var(--white);
+}
