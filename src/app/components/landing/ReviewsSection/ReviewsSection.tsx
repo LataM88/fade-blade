@@ -4,7 +4,36 @@ export default function ReviewsSection() {
     return (
         <section className={styles.section}>
             <div className={styles.container}>
-                <h2>Reviews</h2>
+                <h1>What are they saying about us?</h1>
+            </div>
+            <div className={styles.wrapper}>
+                <div className={styles.content}>
+                    <div className={styles.reviews}>
+                        <div className={styles.review}>
+                            <h4>Franklin.S</h4>
+                            <p>Excellent work, it's hard to <br /> imagine a better result.</p>
+                            <div className={styles.reviewImage}></div>
+                        </div>
+                    </div>
+                </div>
+                <div className={styles.content}>
+                    <div className={styles.reviews}>
+                        <div className={styles.review}>
+                            <h4>Franklin.S</h4>
+                            <p>Excellent work, it's hard to <br /> imagine a better result.</p>
+                            <div className={styles.reviewImage}></div>
+                        </div>
+                    </div>
+                </div>
+                <div className={styles.content}>
+                    <div className={styles.reviews}>
+                        <div className={styles.review}>
+                            <h4>Franklin.S</h4>
+                            <p>Excellent work, it's hard to <br /> imagine a better result.</p>
+                            <div className={styles.reviewImage}></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     );
