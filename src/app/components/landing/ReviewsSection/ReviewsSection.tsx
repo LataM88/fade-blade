@@ -12,7 +12,14 @@ export default function ReviewsSection() {
                         <div className={styles.review}>
                             <h4>Franklin.S</h4>
                             <p>Excellent work, it's hard to <br /> imagine a better result.</p>
-                            <div className={styles.reviewImage}></div>
+                            <div className={styles.reviewFooter}>
+                                <div className={styles.reviewImage}></div>
+                                <div className={styles.stars}>
+                                    {[...Array(5)].map((_, i) => (
+                                        <img key={i} src="/images/star.svg" alt="star" className={styles.star} />
+                                    ))}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -21,7 +28,14 @@ export default function ReviewsSection() {
                         <div className={styles.review}>
                             <h4>Franklin.S</h4>
                             <p>Excellent work, it's hard to <br /> imagine a better result.</p>
-                            <div className={styles.reviewImage}></div>
+                            <div className={styles.reviewFooter}>
+                                <div className={styles.reviewImage}></div>
+                                <div className={styles.stars}>
+                                    {[...Array(5)].map((_, i) => (
+                                        <img key={i} src="/images/star.svg" alt="star" className={styles.star} />
+                                    ))}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -30,7 +44,14 @@ export default function ReviewsSection() {
                         <div className={styles.review}>
                             <h4>Franklin.S</h4>
                             <p>Excellent work, it's hard to <br /> imagine a better result.</p>
-                            <div className={styles.reviewImage}></div>
+                            <div className={styles.reviewFooter}>
+                                <div className={styles.reviewImage}></div>
+                                <div className={styles.stars}>
+                                    {[...Array(5)].map((_, i) => (
+                                        <img key={i} src="/images/star.svg" alt="star" className={styles.star} />
+                                    ))}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
