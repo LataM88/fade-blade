@@ -1,10 +1,156 @@
 .section {
     padding: 80px 0;
-    background-color: var(--background);
+    background-color: var(--brown-secondary);
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 24px;
+}
+
+.section h1 {
+    color: var(--primary-yellow);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 64px;
+}
+
+.upperWrapper {
+    display: flex;
+    flex-direction: row;
+    margin-left: 64px;
+    margin-right: 64px;
+}
+
+.upperImage1 {
+    background-image:
+        linear-gradient(rgba(27, 19, 017, 0.3),
+            rgba(0, 0, 0, 0.3)),
+        url('/images/gallery/haircut1.jpg');
+    width: 341px;
+    height: 284px;
+    background-size: cover;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    background-position: center;
+}
+
+.upperImage2 {
+    z-index: 1;
+    background-image:
+        linear-gradient(rgba(27, 19, 017, 0.2),
+            rgba(0, 0, 0, 0.2)),
+        url('/images/gallery/haircut2.jpg');
+    width: 341px;
+    height: 284px;
+    background-size: cover;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    background-position-x: center;
+    margin-top: 34px;
+    margin-left: -16px;
+    margin-right: -16px;
+}
+
+.upperImage3 {
+    background-image:
+        linear-gradient(rgba(27, 19, 017, 0.45),
+            rgba(0, 0, 0, 0.5)),
+        url('/images/gallery/haircut.3.jpg');
+    width: 341px;
+    height: 284px;
+    background-size: cover;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    background-position-x: center;
+}
+
+.upperImage4 {
+    z-index: 1;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)),
+        url('/images/gallery/haircut4.jpg');
+    width: 341px;
+    height: 284px;
+    background-size: cover;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    margin-top: 34px;
+    background-position: center;
+    margin-left: -16px;
+}
+
+.lowerWrapper {
+    display: flex;
+    flex-direction: row;
+    margin-left: 64px;
+    margin-right: 64px;
+    margin-top: -34px;
+}
+
+.lowerImage1 {
+    background-image:
+        linear-gradient(rgba(27, 19, 017, 0.3),
+            rgba(0, 0, 0, 0.3)),
+        url('/images/gallery/haircut5.jpg');
+    width: 341px;
+    height: 284px;
+    background-size: cover;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    background-position-x: center;
+}
+
+.lowerImage2 {
+    z-index: 1;
+    background-image:
+        linear-gradient(rgba(27, 19, 017, 0.2),
+            rgba(0, 0, 0, 0.2)),
+        url('/images/gallery/haircut6.jpg');
+    width: 341px;
+    height: 284px;
+    background-size: cover;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    background-position-x: center;
+    margin-top: 34px;
+    margin-left: -16px;
+    margin-right: -16px;
+}
+
+.lowerImage3 {
+    background-image:
+        linear-gradient(rgba(27, 19, 017, 0.45),
+            rgba(0, 0, 0, 0.5)),
+        url('/images/gallery/haircut.7.jpg');
+    width: 341px;
+    height: 284px;
+    background-size: cover;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    background-position-x: center;
+}
+
+.lowerImage4 {
+    z-index: 1;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)),
+        url('/images/gallery/haircut8.jpg');
+    width: 341px;
+    height: 284px;
+    background-size: cover;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    margin-top: 34px;
+    background-position: center;
+    margin-left: -16px;
+}
+
+.btnWrapper {
+    margin-top: 64px;
+    margin-left: 64px;
 }
