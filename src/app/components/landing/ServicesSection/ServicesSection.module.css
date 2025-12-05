@@ -8,3 +8,30 @@
     margin: 0 auto;
     padding: 0 24px;
 }
+
+.section h1 {
+    color: var(--primary-yellow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.services {
+    display: flex;
+    flex-direction: column;
+    width: 918px;
+    height: 494px;
+    margin-left: 64px;
+    gap: 32px;
+}
+
+.services h3 {
+    color: var(--primary-yellow);
+}
+
+.services .service1 {
+    background-image: url('/images/services/service-logo.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
