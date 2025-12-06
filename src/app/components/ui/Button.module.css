@@ -49,3 +49,23 @@
     background-color: var(--primary-yellow);
     color: var(--brown-secondary);
 }
+
+.booking-cta {
+    width: 280px;
+    height: 55px;
+    font-size: 24px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--primary-yellow);
+    border: 3px solid var(--primary-yellow);
+}
+
+.booking-cta:hover {
+    box-shadow:
+        0 0 2px var(--primary-yellow),
+        0 0 4px var(--primary-yellow),
+        0 0 8px var(--primary-yellow),
+        0 0 16px var(--primary-yellow);
+}
