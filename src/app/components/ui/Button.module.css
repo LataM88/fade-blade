@@ -69,3 +69,23 @@
         0 0 8px var(--primary-yellow),
         0 0 16px var(--primary-yellow);
 }
+
+.contact {
+    width: 280px;
+    height: 55px;
+    border-radius: 8px;
+    border: 3px solid var(--primary-yellow);
+    color: var(--primary-yellow);
+    background-color: transparent;
+    font-size: 24px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.contact:hover {
+    box-shadow:
+        0 0 2px var(--primary-yellow),
+        0 0 4px var(--primary-yellow),
+        0 0 8px var(--primary-yellow),
+        0 0 16px var(--primary-yellow);
+}

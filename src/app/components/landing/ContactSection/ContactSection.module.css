@@ -1,10 +1,171 @@
 .section {
     padding: 80px 0;
-    background-color: var(--background);
+    background-color: var(--brown-secondary);
+    color: var(--white);
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 24px;
+}
+
+.section h1 {
+    text-align: center;
+    color: var(--primary-yellow);
+    margin-bottom: 64px;
+    font-size: 48px;
+    font-weight: 700;
+}
+
+.cardsContainer {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    flex: 1;
+    min-width: 450px;
+    border: 1px solid var(--primary-yellow);
+    border-radius: 16px;
+    padding: 40px;
+    background-color: transparent;
+}
+
+.formCard {
+    background-image: url('/images/contact/bg-contact.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.card h2 {
+    color: var(--primary-yellow);
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 32px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.input,
+.textarea {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    border-radius: 8px;
+    padding: 16px;
+    color: var(--white);
+    font-size: 16px;
+    font-family: inherit;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+    color: var(--text-white-75);
+}
+
+.textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 16px;
+}
+
+
+.detailsContent {
+    display: flex;
+    gap: 20px;
+    height: 100%;
+}
+
+.detailsInfo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.contactRow {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 18px;
+}
+
+.icon {
+    color: var(--primary-yellow);
+    width: 32px;
+    height: 32px;
+}
+
+.hoursSection {
+    margin-top: 20px;
+}
+
+.hoursSection h3 {
+    color: var(--primary-yellow);
+    margin-bottom: 16px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.hoursTable {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.hourRow {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    max-width: 250px;
+}
+
+.mapContainer {
+    width: 280px;
+    height: 429px;
+    background-image: url('/images/contact/map.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 12px;
+}
+
+@media (max-width: 1024px) {
+    .cardsContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 600px;
+        min-width: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .detailsContent {
+        flex-direction: column;
+    }
+
+    .mapContainer {
+        height: 250px;
+        width: 100%;
+    }
 }
