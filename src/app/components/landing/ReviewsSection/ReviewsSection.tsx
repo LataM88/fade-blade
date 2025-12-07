@@ -2,7 +2,7 @@ import styles from './ReviewsSection.module.css';
 
 export default function ReviewsSection() {
     return (
-        <section className={styles.section}>
+        <section id="opinions" className={styles.section}>
             <div className={styles.container}>
                 <h1>What are they saying about us?</h1>
             </div>

@@ -3,7 +3,7 @@ import Button from '../../ui/Button';
 
 export default function BarbersSection() {
     return (
-        <section className={styles.section}>
+        <section id="team" className={styles.section}>
             <div className={styles.container}>
                 <h1>Our Barbers</h1>
             </div>

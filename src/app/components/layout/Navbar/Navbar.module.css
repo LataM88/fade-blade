@@ -1,10 +1,54 @@
 .navbar {
     padding: 1rem 0;
-    background-color: var(--background);
+    background-color: var(--border-white-22);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    backdrop-filter: blur(10px);
 }
 
 .logo {
-    font-weight: bold;
-    font-size: 1.5rem;
+    background-image: url('/images/logo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 80px;
+    height: 90px;
+    margin-left: 64px;
+}
+
+.navLinks {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.navLinks a {
+    transition: color 0.3s ease;
+}
+
+.navLinks a:hover {
+    color: var(--primary-yellow);
+}
+
+.navContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 64px;
+}
+
+.navLinksUpper {
+    display: flex;
+    gap: 32px;
+}
+
+.navLinksLower {
+    display: flex;
+    gap: 32px;
+    margin-left: 32px;
 }

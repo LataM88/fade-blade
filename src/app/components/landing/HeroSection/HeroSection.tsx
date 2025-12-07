@@ -3,7 +3,7 @@ import Button from '../../ui/Button';
 
 const HeroSection = () => {
     return (
-        <section className={styles.hero}>
+        <section id="hero" className={styles.hero}>
             <div className="container">
                 <h1>A style that gets the job done <br />
                     A cut that makes an impression</h1>

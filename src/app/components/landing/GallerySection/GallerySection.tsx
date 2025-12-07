@@ -3,7 +3,7 @@ import Button from '../../ui/Button';
 
 export default function GallerySection() {
     return (
-        <section className={styles.section}>
+        <section id="photos" className={styles.section}>
             <div className={styles.container}>
                 <h1>Gallery</h1>
             </div>
