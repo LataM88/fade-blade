@@ -96,6 +96,7 @@
     font-size: 20px;
     font-weight: 500;
     border-radius: 8px;
+    border: 3px solid var(--primary-yellow);
     cursor: pointer;
     background-color: var(--primary-yellow);
     color: var(--brown-secondary);
