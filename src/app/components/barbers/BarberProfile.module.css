@@ -177,7 +177,179 @@
     margin-top: 32px;
 }
 
+.barberAppointment h2 {
+    display: flex;
+    justify-content: center;
+}
+
 .rightSection {
+    display: flex;
+    flex-direction: column;
     width: 629px;
     height: 501px;
+    background-image: url("/images/appoitment-profile.png");
+    background-size: cover;
+    background-position: center;
+    border-radius: 16px;
+    padding: 32px;
+}
+
+.rightHead {
+    width: 576px;
+    height: 455px;
+    background-color: var(--border-white-22);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 96px;
+}
+
+.rightHeadContent {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    padding: 48px;
+}
+
+.rightHeadContent h3 {
+    font-size: 32px;
+    color: var(--primary-yellow);
+    font-weight: 700;
+}
+
+.rightHeadContent h3 {
+    font-size: 32px;
+    color: var(--primary-yellow);
+    font-weight: 700;
+}
+
+.rightHeadContent p {
+    font-size: 24px;
+    color: var(--white);
+    font-weight: 600;
+}
+
+.rightHeadButton {
+    display: flex;
+    margin-left: 48px;
+}
+
+.bookingContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.reactCalendar {
+    width: 629px !important;
+    height: 501px !important;
+    background-color: var(--border-white-22) !important;
+    border: 1px solid var(--border-white-22) !important;
+    border-radius: 16px !important;
+    font-family: inherit !important;
+    color: #fff !important;
+    line-height: 1.125em !important;
+    padding: 24px !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.reactCalendar :global(.react-calendar__navigation) {
+    display: flex;
+    height: 60px !important;
+    margin-bottom: 20px !important;
+}
+
+.reactCalendar :global(.react-calendar__viewContainer) {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.reactCalendar :global(.react-calendar__month-view) {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.reactCalendar :global(.react-calendar__month-view > div) {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.reactCalendar :global(.react-calendar__month-view > div > div) {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.reactCalendar :global(.react-calendar__month-view__days) {
+    flex: 1 !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+}
+
+.reactCalendar :global(.react-calendar__navigation button) {
+    color: var(--primary-yellow);
+    min-width: 44px;
+    background: none;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.reactCalendar :global(.react-calendar__navigation button:enabled:hover),
+.reactCalendar :global(.react-calendar__navigation button:enabled:focus) {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+.reactCalendar :global(.react-calendar__month-view__weekdays) {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.9em;
+    color: var(--primary-yellow);
+    margin-bottom: 10px;
+}
+
+.reactCalendar :global(.react-calendar__month-view__days__day) {
+    color: #fff;
+    font-size: 1.1em;
+}
+
+.reactCalendar :global(.react-calendar__tile) {
+    max-width: 100%;
+    padding: 10px 6.6667px;
+    background: none;
+    text-align: center;
+    line-height: 16px;
+    font: inherit;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reactCalendar :global(.react-calendar__tile:enabled:hover),
+.reactCalendar :global(.react-calendar__tile:enabled:focus) {
+    background-color: rgba(255, 181, 43, 0.2);
+    color: var(--primary-yellow);
+    border-radius: 8px;
+}
+
+.reactCalendar :global(.react-calendar__tile--now) {
+    background: transparent;
+    color: var(--primary-yellow);
+    border: 1px solid var(--primary-yellow);
+    border-radius: 8px;
+}
+
+.reactCalendar :global(.react-calendar__tile--active) {
+    background: var(--primary-yellow) !important;
+    color: #1a1a1a !important;
+    border-radius: 8px;
 }

@@ -1,6 +1,13 @@
+"use client";
+import { useState } from 'react';
 import Image, { StaticImageData } from "next/image";
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 import styles from './BarberProfile.module.css';
 import Button from "../ui/Button";
+
+type ValuePiece = Date | null;
+type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 interface BarberProfileProps {
     barber: {
@@ -12,6 +19,8 @@ interface BarberProfileProps {
 }
 
 export default function BarberProfile({ barber }: BarberProfileProps) {
+    const [date, setDate] = useState<Value>(new Date());
+
     return (
         <section id='barber-profile' className={styles.barberProfile}>
             <div className={styles.container}>
@@ -112,13 +121,22 @@ export default function BarberProfile({ barber }: BarberProfileProps) {
                 </div>
                 <div className={styles.barberAppointment}>
                     <h2>Meet Max</h2>
-                    <div className={styles.rightSection}>
-                        <div className={styles.rightSectionContent}>
-                            <div className={styles.rightHead}>
-                                <h3>Book appointment</h3>
-                                <p>Click on an avaible date,<br />select a time, <br />and book your appointment </p>
+                    <div className={styles.bookingContainer}>
+                        <div className={styles.rightSection}>
+                            <div className={styles.rightSectionContent}>
+                                <div className={styles.rightHead}>
+                                    <div className={styles.rightHeadContent}>
+                                        <h3>Book appointment</h3>
+                                        <p>Click on an avaible date,<br />select a time, <br />and book your appointment </p>
+                                    </div>
+                                    <div className={styles.rightHeadButton}>
+                                        <Button variant='barber-appointment'>Start Booking Now</Button>
+                                    </div>
+                                </div>
                             </div>
-                            <Button variant='barber-appointment'>Start Booking Now</Button>
+                        </div>
+                        <div className={styles.calendarWrapper}>
+                            <Calendar onChange={setDate} value={date} className={styles.reactCalendar} />
                         </div>
                     </div>
                 </div>
