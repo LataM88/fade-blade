@@ -1,7 +1,15 @@
+'use client'
 import styles from './BarbersSection.module.css';
 import Button from '../../ui/Button';
+import { useRouter } from 'next/navigation';
 
 export default function BarbersSection() {
+    const router = useRouter();
+
+    const handlePortfolioClick = (id: string) => {
+        router.push(`/barber/${id}`);
+    }
+
     return (
         <section id="team" className={styles.section}>
             <div className={styles.container}>
@@ -12,7 +20,7 @@ export default function BarbersSection() {
                     <div className={styles.hoverOverlay}>
                         <h3>Founder & Master Barber</h3>
                         <p>combines passion, experience and precision in every detail.</p>
-                        <Button variant="portfolio">Portfolio</Button>
+                        <Button variant="portfolio" onClick={() => handlePortfolioClick("max")}>Portfolio</Button>
                     </div>
                     <div className={styles.barberInfo1}>
                         <h2>Max</h2>
@@ -23,7 +31,7 @@ export default function BarbersSection() {
                     <div className={styles.hoverOverlay}>
                         <h3>Founder & Master Barber</h3>
                         <p>combines passion, experience and precision in every detail.</p>
-                        <Button variant="portfolio">Portfolio</Button>
+                        <Button variant="portfolio" onClick={() => handlePortfolioClick("kevin")}>Portfolio</Button>
                     </div>
                     <div className={styles.barberInfo2}>
                         <h2>Kevin</h2>
@@ -34,7 +42,7 @@ export default function BarbersSection() {
                     <div className={styles.hoverOverlay}>
                         <h3>Founder & Master Barber</h3>
                         <p>combines passion, experience and precision in every detail.</p>
-                        <Button variant="portfolio">Portfolio</Button>
+                        <Button variant="portfolio" onClick={() => handlePortfolioClick("jake")}>Portfolio</Button>
                     </div>
                     <div className={styles.barberInfo3}>
                         <h2>Jake</h2>

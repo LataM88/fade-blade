@@ -1,0 +1,183 @@
+.barberProfile {
+    margin-top: 24px;
+    margin-left: 64px;
+}
+
+.container {
+    margin-bottom: 64px;
+}
+
+.barberHead {
+    display: flex;
+    flex-direction: row;
+    gap: 64px;
+    margin-right: 64px;
+}
+
+.leftPhoto {
+    width: 613px;
+    height: 569px;
+}
+
+.leftPhoto :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.barberName {
+    font-size: 36px;
+    font-weight: 700;
+    color: #FFB52B;
+}
+
+.barberDescription {
+    display: flex;
+    line-height: 1.5;
+    white-space: pre-line;
+    font-size: 24px;
+    font-weight: 500;
+    color: #F5F5F5;
+}
+
+.barberInfoContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 64px;
+}
+
+.barberInfoContainer h2 {
+    color: var(--primary-yellow);
+    margin-bottom: 64px;
+}
+
+.barberInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 32px;
+    margin-right: 64px;
+}
+
+.bioInfo {
+    width: 413px;
+    height: 413px;
+    border-radius: 16px;
+    background-color: var(--border-white-22);
+    padding: 24px;
+    line-height: 1.7;
+}
+
+.bioInfoHeader h2 {
+    color: var(--primary-yellow);
+    margin-bottom: 16px;
+}
+
+.specializationInfo {
+    display: flex;
+    flex-direction: column;
+    width: 413px;
+    height: 413px;
+    border-radius: 16px;
+    background-color: var(--border-white-22);
+    padding: 24px;
+    gap: 24px;
+}
+
+.specializationList {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.specializationList img {
+    width: 38px;
+    height: 28px;
+}
+
+.specializationInfo h2 {
+    color: var(--primary-yellow);
+    margin-bottom: 16px;
+}
+
+.opinionItem img {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 1px solid var(--primary-yellow);
+}
+
+.opinionInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 413px;
+    height: 413px;
+    border-radius: 16px;
+    background-color: var(--border-white-22);
+    padding: 24px;
+}
+
+.opinionInfo h2 {
+    margin-bottom: 24px !important;
+}
+
+.opinionGrade span {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.opinionGrade {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.opinionList {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.opinionItem {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    align-items: center;
+}
+
+.barberWork {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 64px;
+}
+
+.barberWorkList {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    margin-right: 64px;
+}
+
+.barberWorkItem img {
+    width: 413px;
+    height: 348px;
+    border-radius: 16px;
+    object-fit: cover;
+}
+
+.barberWorkButton {
+    display: flex;
+    justify-content: left;
+    width: 100%;
+    margin-top: 32px;
+}
+
+.rightSection {
+    width: 629px;
+    height: 501px;
+}
