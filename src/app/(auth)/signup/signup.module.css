@@ -1,0 +1,147 @@
+.section {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--brown-secondary);
+    padding: 20px;
+    overflow: hidden;
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 1200px;
+    height: 100%;
+    max-height: 900px;
+    align-items: center;
+    position: relative;
+    padding: 0 40px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 64px 40px 64px 0;
+    width: 50%;
+    height: 100%;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+}
+
+.container h1 {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 8px;
+}
+
+.separator {
+    color: var(--primary-yellow);
+}
+
+.container>p {
+    color: var(--white-75);
+    font-size: 16px;
+    margin-bottom: 32px;
+}
+
+.leftFormContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.leftFormContainer form {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.leftFormContainer p {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 6px;
+    margin-top: 16px;
+}
+
+.leftFormContainer p:first-child {
+    margin-top: 0;
+}
+
+.leftFormContainer input {
+    width: 100%;
+    height: 50px;
+    border-radius: 8px;
+    background-color: var(--border-white-22);
+    border: none;
+    padding: 0 16px;
+    color: var(--white);
+    font-size: 14px;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.leftFormContainer input:focus {
+    box-shadow: 0 0 0 2px var(--primary-yellow);
+}
+
+.leftFormButton {
+    margin-top: 24px;
+}
+
+.leftFormAlready {
+    margin-top: 16px;
+}
+
+.leftFormAlready p {
+    color: var(--white);
+    font-size: 14px;
+    margin: 0;
+}
+
+.leftFormAlready span {
+    color: var(--primary-yellow);
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: 600;
+    margin-left: 8px;
+}
+
+
+
+.rightFormContainer {
+    width: 50%;
+    height: 100%;
+    position: relative;
+}
+
+.rightFormContainer img {
+    position: absolute;
+    width: 65%;
+    height: 55%;
+    object-fit: cover;
+}
+
+.rightFormContainer img:first-child {
+    border: none;
+    width: 65%;
+    height: 55%;
+    aspect-ratio: auto;
+    top: 24px;
+    right: 0;
+    z-index: 1;
+}
+
+.rightFormContainer img:last-child {
+    width: 65%;
+    height: 55%;
+    opacity: 1;
+    bottom: 32px;
+    left: 40px;
+    z-index: 2;
+}
