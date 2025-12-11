@@ -1,5 +1,6 @@
 import styles from './Navbar.module.css';
 import Button from '../../ui/Button';
+import Link from 'next/link';
 
 const Navbar = () => {
     return (
@@ -21,7 +22,7 @@ const Navbar = () => {
                             <a href="#contact">Contact</a>
                         </div>
                     </div>
-                    <Button variant="sign-in">Sign In</Button>
+                    <Link href="/login"><Button variant="sign-in">Sign In</Button></Link>
                 </div>
             </div>
         </nav>

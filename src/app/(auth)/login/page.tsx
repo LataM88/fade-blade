@@ -1,9 +1,38 @@
+'use client'
 import styles from "./login.module.css";
 import Button from "@/app/components/ui/Button";
 import { Facebook, Apple, Chrome } from 'lucide-react';
 import Link from "next/link";
+import { useState } from "react";
+import { supabase } from "@/lib/supabase/client";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
+    const router = useRouter();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    const handleLogin = async () => {
+        setError('');
+        setLoading(true);
+
+        const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
+            email,
+            password,
+        })
+
+        if (authError) {
+            setLoading(false);
+            setError(authError.message);
+            return;
+        }
+
+        setLoading(false);
+        router.push('/dashboard');
+    }
+
     return (
         <section id="login" className={styles.section}>
             <div className={styles.mainContainer}>
@@ -18,11 +47,11 @@ export default function Login() {
                             <p>Back for Another Clean Cut</p>
                         </div>
                         <div className={styles.rightFormContainer}>
-                            <form action="login">
+                            <form onSubmit={(e) => { e.preventDefault(); handleLogin(); }}>
                                 <p>Email</p>
-                                <input type="email" />
+                                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                                 <p>Password</p>
-                                <input type="password" />
+                                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
 
                                 <div className={styles.rememberMeContainer}>
                                     <input type="checkbox" id="rememberMe" />
@@ -30,7 +59,14 @@ export default function Login() {
                                 </div>
 
                                 <div className={styles.rightFormButton}>
-                                    <Button variant="sign-in">Sign In</Button>
+                                    {error && <p style={{ color: 'red' }}>{error}</p>}
+                                    <Button
+                                        variant="sign-in"
+                                        onClick={handleLogin}
+                                        disabled={loading}
+                                    >
+                                        Sign In
+                                    </Button>
                                 </div>
                                 <div className={styles.rightFormOtherSign}>
                                     <p>Or sign in with</p>

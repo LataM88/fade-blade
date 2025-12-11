@@ -1,5 +1,6 @@
 import styles from './HeroSection.module.css';
 import Button from '../../ui/Button';
+import Link from 'next/link';
 
 const HeroSection = () => {
     return (
@@ -8,7 +9,7 @@ const HeroSection = () => {
                 <h1>A style that gets the job done <br />
                     A cut that makes an impression</h1>
                 <p>The best barber shop in town, delivering confidence with every cut.</p>
-                <Button variant="book-appointment">Book Appointment</Button>
+                <Link href="/signup"><Button variant="book-appointment">Book Appointment</Button></Link>
                 <p>5+years <span className={styles.separator}>|</span> Pro Barbers <span className={styles.separator}>|</span> 5000+ clients</p>
             </div>
         </section>

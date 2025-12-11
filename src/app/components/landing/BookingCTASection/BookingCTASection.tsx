@@ -1,5 +1,6 @@
 import styles from './BookingCTASection.module.css';
 import Button from '../../ui/Button';
+import Link from 'next/link';
 
 export default function BookingCTASection() {
     return (
@@ -16,7 +17,7 @@ export default function BookingCTASection() {
                             <div className={styles.contentStep4}><p>4.Confirm & Relax</p></div>
                         </div>
                         <div className={styles.contentButton}>
-                            <Button variant="booking-cta">Book Appointment</Button>
+                            <Link href="/signup"><Button variant="booking-cta">Book Appointment</Button></Link>
                         </div>
                     </div>
                 </div>
