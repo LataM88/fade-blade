@@ -4,57 +4,83 @@ import Button from "@/app/components/ui/Button";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase/client";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { signUpSchema, SignUpFormData } from "@/lib/validations/auth";
 
 export default function Signup() {
-    const [name, setName] = useState('');
-    const [secondName, setSecondName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [error, setError] = useState('');
-    const [success, setSuccess] = useState('');
-    const [loading, setLoading] = useState(false);
+    const {
+        register,
+        handleSubmit,
+        formState: { errors, isSubmitting },
+    } = useForm<SignUpFormData>({
+        resolver: zodResolver(signUpSchema),
+    });
 
-    const handleSignup = async () => {
-        setError('');
+    const [globalError, setGlobalError] = useState('');
+    const [success, setSuccess] = useState('');
+
+    const onSubmit = async (data: SignUpFormData) => {
+        setGlobalError('');
         setSuccess('');
-        setLoading(true);
 
         const { data: authData, error: authError } = await supabase.auth.signUp({
-            email,
-            password,
+            email: data.email,
+            password: data.password,
         });
 
         if (authError) {
-            setLoading(false);
-            setError(authError.message);
+            setGlobalError(authError.message);
             return;
         }
 
         const userId = authData.user?.id;
         if (!userId) {
-            setLoading(false);
-            setError("Nie udało się pobrać ID użytkownika");
+            setGlobalError("Nie udało się pobrać ID użytkownika");
             return;
         }
 
+        const activationToken = crypto.randomUUID();
+        const activationExpiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString();
+
         const { error: profileError } = await supabase.from('profiles').insert({
             id: userId,
-            email: email,
-            first_name: name,
-            last_name: secondName,
-            phone: phoneNumber,
+            email: data.email,
+            first_name: data.name,
+            last_name: data.secondName,
+            phone: data.phoneNumber,
+            is_active: false,
+            activation_token: activationToken,
+            activation_expires_at: activationExpiresAt,
         });
 
         if (profileError) {
             console.error("Profile insert error:", profileError);
-            setLoading(false);
-            setError(profileError.message);
+            setGlobalError(profileError.message);
             return;
         }
 
-        setLoading(false);
-        setSuccess("Konto zostało utworzone pomyślnie!");
+        try {
+            const response = await fetch('/api/auth/send-activation', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: data.name,
+                    email: data.email,
+                    token: activationToken,
+                }),
+            });
+
+            if (!response.ok) {
+                console.error("Failed to send activation email");
+            }
+        } catch (error) {
+            console.error("Error sending activation email:", error);
+        }
+
+        setSuccess("Konto utworzone! Sprawdź email, aby aktywować konto.");
     };
 
     return (
@@ -66,28 +92,37 @@ export default function Signup() {
                         <span className={styles.separator}>Fade&Blade</span>Crew</h1>
                     <p>Create your account and book your next cut in seconds</p>
                     <div className={styles.leftFormContainer}>
-                        <form onSubmit={(e) => { e.preventDefault(); handleSignup(); }}>
+                        <form onSubmit={handleSubmit(onSubmit)} noValidate>
                             <p>Name</p>
-                            <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-                            <p>Second name</p>
-                            <input type="text" value={secondName} onChange={(e) => setSecondName(e.target.value)} />
-                            <p>Email</p>
-                            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                            <p>Password</p>
-                            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                            <p>Phone number</p>
-                            <input type="tel" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
+                            <input type="text" {...register("name")} />
+                            {errors.name && <p style={{ color: 'red', fontSize: '0.8rem', marginTop: '4px' }}>{errors.name.message}</p>}
 
-                            {error && <p style={{ color: 'red' }}>{error}</p>}
-                            {success && <p style={{ color: '#FFB52B' }}>{success}</p>}
+                            <p>Second name</p>
+                            <input type="text" {...register("secondName")} />
+                            {errors.secondName && <p style={{ color: 'red', fontSize: '0.8rem', marginTop: '4px' }}>{errors.secondName.message}</p>}
+
+                            <p>Email</p>
+                            <input type="email" {...register("email")} />
+                            {errors.email && <p style={{ color: 'red', fontSize: '0.8rem', marginTop: '4px' }}>{errors.email.message}</p>}
+
+                            <p>Password</p>
+                            <input type="password" {...register("password")} />
+                            {errors.password && <p style={{ color: 'red', fontSize: '0.8rem', marginTop: '4px' }}>{errors.password.message}</p>}
+
+                            <p>Phone number</p>
+                            <input type="tel" {...register("phoneNumber")} />
+                            {errors.phoneNumber && <p style={{ color: 'red', fontSize: '0.8rem', marginTop: '4px' }}>{errors.phoneNumber.message}</p>}
+
+                            {globalError && <p style={{ color: 'red', marginTop: '10px' }}>{globalError}</p>}
+                            {success && <p style={{ color: '#FFB52B', marginTop: '10px' }}>{success}</p>}
 
                             <div className={styles.leftFormButton}>
                                 <Button
                                     variant="sign-up"
-                                    onClick={handleSignup}
-                                    disabled={loading}
+                                    type="submit"
+                                    disabled={isSubmitting}
                                 >
-                                    {loading ? 'In Process...' : 'Sign Up'}
+                                    {isSubmitting ? 'In Process...' : 'Sign Up'}
                                 </Button>
                             </div>
                         </form>

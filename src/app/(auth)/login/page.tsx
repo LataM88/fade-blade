@@ -6,30 +6,50 @@ import Link from "next/link";
 import { useState } from "react";
 import { supabase } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { signInSchema, SignInFormData } from "@/lib/validations/auth";
 
 export default function Login() {
     const router = useRouter();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
-    const [loading, setLoading] = useState(false);
+    const {
+        register,
+        handleSubmit,
+        formState: { errors, isSubmitting },
+    } = useForm<SignInFormData>({
+        resolver: zodResolver(signInSchema),
+    });
 
-    const handleLogin = async () => {
-        setError('');
-        setLoading(true);
+    const [globalError, setGlobalError] = useState('');
+
+    const onSubmit = async (data: SignInFormData) => {
+        setGlobalError('');
 
         const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
-            email,
-            password,
-        })
+            email: data.email,
+            password: data.password,
+        });
 
         if (authError) {
-            setLoading(false);
-            setError(authError.message);
+            setGlobalError(authError.message);
             return;
         }
 
-        setLoading(false);
+        const userId = authData.user?.id;
+        if (userId) {
+            const { data: profile, error: profileError } = await supabase
+                .from('profiles')
+                .select('is_active')
+                .eq('id', userId)
+                .single();
+
+            if (profile && profile.is_active === false) {
+                await supabase.auth.signOut();
+                setGlobalError('Your account is not activated. Please check your email.');
+                return;
+            }
+        }
+
         router.push('/dashboard');
     }
 
@@ -47,11 +67,14 @@ export default function Login() {
                             <p>Back for Another Clean Cut</p>
                         </div>
                         <div className={styles.rightFormContainer}>
-                            <form onSubmit={(e) => { e.preventDefault(); handleLogin(); }}>
+                            <form onSubmit={handleSubmit(onSubmit)} noValidate>
                                 <p>Email</p>
-                                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                                <input type="email" {...register("email")} />
+                                {errors.email && <p style={{ color: 'red', fontSize: '0.8rem', marginTop: '4px' }}>{errors.email.message}</p>}
+
                                 <p>Password</p>
-                                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                                <input type="password" {...register("password")} />
+                                {errors.password && <p style={{ color: 'red', fontSize: '0.8rem', marginTop: '4px' }}>{errors.password.message}</p>}
 
                                 <div className={styles.rememberMeContainer}>
                                     <input type="checkbox" id="rememberMe" />
@@ -59,13 +82,13 @@ export default function Login() {
                                 </div>
 
                                 <div className={styles.rightFormButton}>
-                                    {error && <p style={{ color: 'red' }}>{error}</p>}
+                                    {globalError && <p style={{ color: 'red', marginBottom: '10px' }}>{globalError}</p>}
                                     <Button
                                         variant="sign-in"
-                                        onClick={handleLogin}
-                                        disabled={loading}
+                                        type="submit"
+                                        disabled={isSubmitting}
                                     >
-                                        Sign In
+                                        {isSubmitting ? 'In Process...' : 'Sign In'}
                                     </Button>
                                 </div>
                                 <div className={styles.rightFormOtherSign}>
@@ -78,7 +101,7 @@ export default function Login() {
                                 </div>
                                 <div className={styles.rightFormActions}>
                                     <div className={styles.rightFormActionsColumn}>
-                                        <p>Don't have an account?</p>
+                                        <p>Don&apos;t have an account?</p>
                                         <Link href="signup" className={styles.yellowLink}>Sign Up</Link>
                                     </div>
                                     <div className={styles.rightFormActionsColumn}>
