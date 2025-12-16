@@ -1,0 +1,339 @@
+.section {
+    background-color: var(--brown-secondary);
+    min-height: 100vh;
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 64px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.container h2 {
+    color: var(--primary-yellow);
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.container p {
+    color: var(--white);
+    font-size: 24px;
+    margin-bottom: 64px
+}
+
+.containerInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 64px;
+}
+
+.infoCard {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 310px;
+    height: 242px;
+    background-color: var(--border-white-22);
+    border-radius: 16px;
+    border: 1px solid var(--primary-yellow);
+    padding: 33px;
+    margin-right: 20px;
+}
+
+.infoCard:last-child {
+    margin-right: 0;
+}
+
+.infoIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background-color: rgba(255, 181, 43, 0.1);
+    width: 60px;
+    height: 60px;
+}
+
+.infoText p {
+    color: var(--text-white-75);
+    font-size: 16px;
+    margin-bottom: 0;
+}
+
+.infoDate p {
+    color: var(--white);
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.separator {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--text-white-75);
+}
+
+.containerAppointments {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-bottom: 64px;
+}
+
+.appointmentsHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.appointmentsHeader h2 {
+    color: var(--primary-yellow);
+    font-size: 32px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.appointmentsCards {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 32px;
+}
+
+.appointmentCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    background-color: var(--border-white-22);
+    border-radius: 16px;
+    border: 1px solid var(--primary-yellow);
+    padding: 32px;
+    position: relative;
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.appointmentIcon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+}
+
+.appointmentIcon img {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.appointmentBarberInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.appointmentBarberInfo h3 {
+    color: var(--white);
+    font-size: 20px;
+    margin: 0;
+    font-weight: 600;
+}
+
+.appointmentBarberInfo p {
+    color: var(--text-white-75);
+    font-size: 14px;
+    margin: 0;
+}
+
+.statusBadge {
+    background-color: #2E7D32;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.statusBadge.pending {
+    background-color: #F57F17;
+}
+
+.cardDetails {
+    display: flex;
+    gap: 32px;
+    margin-top: 24px;
+}
+
+.detailItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--white);
+    font-size: 16px;
+}
+
+.cardCountdown {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 12px 16px;
+    border: 1px solid var(--border-white-4);
+}
+
+.timeLeft {
+    color: var(--primary-yellow);
+    font-weight: 600;
+}
+
+.cancelButton {
+    background: transparent !important;
+    border: 1px solid var(--border-white-22) !important;
+    color: #FF5252 !important;
+    width: 32px !important;
+    height: 32px !important;
+    min-width: unset !important;
+    padding: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.containerHistory {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-bottom: 64px;
+}
+
+.containerHistory h2 {
+    color: var(--primary-yellow);
+    font-size: 32px;
+    font-weight: 500;
+}
+
+.historyTable {
+    background-color: var(--border-white-22);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.tableHeader {
+    display: grid;
+    grid-template-columns: 2fr 2fr 3fr 1fr 1fr;
+    padding: 24px 32px;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--white);
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.tableRow {
+    display: grid;
+    grid-template-columns: 2fr 2fr 3fr 1fr 1fr;
+    padding: 24px 32px;
+    border-bottom: 1px solid var(--border-white-4);
+    color: var(--text-white-75);
+    align-items: center;
+    font-size: 16px;
+}
+
+.tableRow:last-child {
+    border-bottom: none;
+}
+
+.tableRow span:first-child {
+    color: var(--white);
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+}
+
+.actions button {
+    width: 36px !important;
+    height: 36px !important;
+    padding: 0 !important;
+    min-width: unset !important;
+    background: transparent !important;
+    border: 1px solid var(--primary-yellow) !important;
+    color: var(--primary-yellow) !important;
+}
+
+.containerFavorites {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.containerFavorites h2 {
+    color: var(--primary-yellow);
+    font-size: 32px;
+}
+
+.favoritesCards {
+    display: flex;
+    gap: 32px;
+}
+
+.favoriteCard {
+    flex: 1;
+    background-color: var(--border-white-22);
+    border: 1px solid var(--primary-yellow);
+    border-radius: 16px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+}
+
+.barberAvatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 8px;
+    object-fit: cover;
+}
+
+.favoriteCard h3 {
+    color: var(--white);
+    font-size: 24px;
+    margin: 0;
+}
+
+.favoriteCard p {
+    color: var(--text-white-75);
+    font-size: 14px;
+    margin: 0 !important;
+}
+
+.rating {
+    color: var(--primary-yellow);
+    font-weight: 600;
+    margin: 8px 0;
+}
+
+.visitCount {
+    color: var(--white) !important;
+    font-size: 16px !important;
+    margin-bottom: 16px !important;
+}

@@ -180,3 +180,23 @@
         0 0 8px var(--primary-yellow),
         0 0 16px var(--primary-yellow);
 }
+
+.new-appointment {
+    width: 300px;
+    height: 65px;
+    font-size: 24px;
+    font-weight: 500;
+    border-radius: 16px;
+    cursor: pointer;
+    color: var(--brown-secondary);
+    background-color: var(--primary-yellow);
+    border: 1px solid var(--primary-yellow);
+}
+
+.new-appointment:hover {
+    box-shadow:
+        0 0 2px var(--primary-yellow),
+        0 0 4px var(--primary-yellow),
+        0 0 8px var(--primary-yellow),
+        0 0 16px var(--primary-yellow);
+}

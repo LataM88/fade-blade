@@ -2,7 +2,8 @@ import styles from './Button.module.css';
 import React, { ButtonHTMLAttributes } from 'react';
 
 type ButtonProps = {
-    variant?: 'book-appointment' | 'portfolio' | 'gallery' | 'booking-cta' | 'contact' | 'sign-in' | 'barber-work' | 'barber-appointment' | 'sign-up' | 'reset-password';
+    variant?: 'book-appointment' | 'portfolio' | 'gallery' | 'booking-cta' | 'contact' | 'sign-in' | 'barber-work' | 'barber-appointment' | 'sign-up' | 'reset-password'
+    | 'new-appointment';
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button: React.FC<ButtonProps> = ({ children, variant = 'book-appointment', ...props }) => {
