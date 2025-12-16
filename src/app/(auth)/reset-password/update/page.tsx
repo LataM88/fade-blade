@@ -9,7 +9,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { signUpSchema } from "@/lib/validations/auth";
 
-// Extract just the password part of the schema + confirm password
 const updatePasswordSchema = z.object({
     password: signUpSchema.shape.password,
     confirmPassword: z.string(),

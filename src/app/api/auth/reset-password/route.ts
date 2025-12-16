@@ -6,7 +6,6 @@ export async function POST(request: Request) {
     try {
         const { email } = await request.json();
 
-        // Fix logic: email SHOULD include @
         if (!email || !email.includes("@")) {
             return NextResponse.json(
                 { message: "Invalid email" },
@@ -29,16 +28,12 @@ export async function POST(request: Request) {
                                 cookieStore.set(name, value, options)
                             );
                         } catch {
-                            // The `setAll` method was called from a Server Component.
-                            // This can be ignored if you have middleware refreshing
-                            // user sessions.
                         }
                     },
                 },
             }
         );
 
-        // Dynamically determine the origin
         const origin = new URL(request.url).origin;
 
         const { error } = await supabase.auth.resetPasswordForEmail(email, {
