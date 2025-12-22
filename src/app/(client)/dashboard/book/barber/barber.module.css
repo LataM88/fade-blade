@@ -1,0 +1,96 @@
+.content {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.content h2 {
+    color: var(--primary-yellow);
+    margin-bottom: 24px;
+}
+
+.barbersCard {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    width: 100%;
+    margin-bottom: 32px;
+}
+
+.barberCard {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+    background-color: var(--border-white-4);
+    border-radius: 16px;
+    border: 1px solid var(--primary-yellow);
+    padding: 24px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.barberCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.selected {
+    border: 2px solid var(--primary-yellow);
+    background-color: var(--border-white-22);
+    box-shadow: 0 0 0 2px var(--primary-yellow);
+}
+
+.barberCardPhoto {
+    margin-bottom: 16px;
+}
+
+.barberCard img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.barberCardInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: var(--white);
+}
+
+.barberCardInfo h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.barberCardInfo p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--text-white-75);
+    font-weight: 500;
+}
+
+.btnContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    width: 100%;
+}
+
+.btnContainer p {
+    color: var(--white);
+    font-weight: 600;
+}
+
+.btnContainers {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+}

@@ -1,0 +1,134 @@
+.mainContainer {
+    display: flex;
+    padding: 64px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: var(--border-white-4);
+    border-radius: 16px;
+    border: 1px solid var(--primary-yellow);
+    padding: 16px;
+}
+
+.container h2 {
+    color: var(--primary-yellow);
+}
+
+.header {
+    color: var(--primary-yellow);
+    margin-bottom: 48px;
+}
+
+
+.servicesContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 48px;
+}
+
+.servicesContainer h2 {
+    color: var(--primary-yellow);
+    margin-bottom: 8px;
+}
+
+.servicesContainer p {
+    color: var(--white);
+    margin-bottom: 24px;
+}
+
+.servicesGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.services {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--white);
+    border-radius: 16px;
+    color: var(--black);
+    min-height: 140px;
+    padding: 16px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+.selected {
+    border: 4px solid var(--primary-yellow);
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+.serviceRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+}
+
+.serviceContentWrapper {
+    display: flex;
+    gap: 16px;
+}
+
+.servicePhoto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    background-color: #ABA8A8;
+    flex-shrink: 0;
+}
+
+.serviceInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.serviceInfo h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.serviceInfo p {
+    margin: 4px 0 0;
+    font-size: 16px;
+    color: #666;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+.serviceMeta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+    padding-left: 72px;
+}
+
+.price {
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.duration {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.btnContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 48px;
+}
