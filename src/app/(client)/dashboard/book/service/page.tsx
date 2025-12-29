@@ -4,6 +4,7 @@ import { supabase } from "@/lib/supabase/client";
 import { useEffect, useState } from "react";
 import Button from '@/app/components/ui/Button';
 import Link from "next/link";
+import { useBooking } from '@/app/(client)/dashboard/book/BookingContext';
 
 interface Service {
     id: number;
@@ -15,7 +16,7 @@ interface Service {
 
 export default function ServicePage() {
     const [services, setServices] = useState<Service[]>([]);
-    const [selectedServices, setSelectedServices] = useState<Service[]>([]);
+    const { serviceIds, setServiceIds } = useBooking();
 
     useEffect(() => {
         const fetchServices = async () => {
@@ -29,19 +30,18 @@ export default function ServicePage() {
         fetchServices();
     }, []);
 
-    const toggleService = (service: Service) => {
-        setSelectedServices((prev) => {
-            const exists = prev.find((s) => s.id === service.id);
-            if (exists) {
-                return prev.filter((s) => s.id !== service.id);
-            } else {
-                return [...prev, service];
-            }
-        });
+    const toggleService = (id: number) => {
+        const idStr = id.toString();
+        setServiceIds(
+            serviceIds.includes(idStr)
+                ? serviceIds.filter(s => s !== idStr)
+                : [...serviceIds, idStr]
+        );
     };
 
-    const totalDuration = selectedServices.reduce((acc, curr) => acc + curr.duration, 0);
-    const totalPrice = selectedServices.reduce((acc, curr) => acc + curr.price, 0);
+    const selectedServicesList = services.filter(s => serviceIds.includes(s.id.toString()));
+    const totalDuration = selectedServicesList.reduce((acc, curr) => acc + curr.duration, 0);
+    const totalPrice = selectedServicesList.reduce((acc, curr) => acc + curr.price, 0);
 
     return (
         <div className={styles.servicesContainer}>
@@ -51,8 +51,8 @@ export default function ServicePage() {
                 {services.map((service) => (
                     <div
                         key={service.id}
-                        className={`${styles.services} ${selectedServices.find(s => s.id === service.id) ? styles.selected : ''}`}
-                        onClick={() => toggleService(service)}
+                        className={`${styles.services} ${serviceIds.includes(service.id.toString()) ? styles.selected : ''}`}
+                        onClick={() => toggleService(service.id)}
                     >
                         <div className={styles.serviceContentWrapper}>
                             <div className={styles.servicePhoto}>
@@ -72,7 +72,20 @@ export default function ServicePage() {
             </div>
             <div className={styles.btnContainer}>
                 <p>Total: {totalDuration}min - {totalPrice}€</p>
-                <Link href="/dashboard/book/barber"><Button variant="next">Next</Button></Link>
+                <Link
+                    href={serviceIds.length === 0 ? '#' : "/dashboard/book/barber"}
+                    onClick={(e) => {
+                        if (serviceIds.length === 0) e.preventDefault();
+                    }}
+                >
+                    <Button
+                        variant="next"
+                        disabled={serviceIds.length === 0}
+                        style={{ opacity: serviceIds.length === 0 ? 0.5 : 1 }}
+                    >
+                        Next
+                    </Button>
+                </Link>
             </div>
         </div>
     );

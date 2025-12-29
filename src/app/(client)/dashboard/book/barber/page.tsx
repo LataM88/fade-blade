@@ -4,6 +4,7 @@ import { supabase } from "@/lib/supabase/client";
 import { useEffect, useState } from "react";
 import Button from '@/app/components/ui/Button';
 import Link from "next/link";
+import { useBooking } from '@/app/(client)/dashboard/book/BookingContext';
 
 interface Barber {
     id: string;
@@ -12,7 +13,7 @@ interface Barber {
 
 export default function BarberPage() {
     const [barbers, setBarbers] = useState<Barber[]>([]);
-    const [selectedBarber, setSelectedBarber] = useState<string | null>(null);
+    const { barberId, setBarberId } = useBooking();
 
     useEffect(() => {
         const fetchBarbers = async () => {
@@ -30,7 +31,7 @@ export default function BarberPage() {
     }, []);
 
     const handleSelect = (id: string) => {
-        setSelectedBarber(id === selectedBarber ? null : id);
+        setBarberId(id === barberId ? null : id);
     };
 
     const getBarberImage = (name: string) => {
@@ -50,7 +51,7 @@ export default function BarberPage() {
                     {barbers.map((barber) => (
                         <div
                             key={barber.id}
-                            className={`${styles.barberCard} ${selectedBarber === barber.id ? styles.selected : ''}`}
+                            className={`${styles.barberCard} ${barberId === barber.id ? styles.selected : ''}`}
                             onClick={() => handleSelect(barber.id)}
                         >
                             <div className={styles.barberCardPhoto}>
@@ -73,7 +74,20 @@ export default function BarberPage() {
                     <p>Total: 60min - 35€</p>
                     <div className={styles.btnContainers}>
                         <Link href="/dashboard/book/service"><Button variant="back">Back</Button></Link>
-                        <Link href="/dashboard/book/date"><Button variant="next">Next</Button></Link>
+                        <Link
+                            href={!barberId ? '#' : "/dashboard/book/date"}
+                            onClick={(e) => {
+                                if (!barberId) e.preventDefault();
+                            }}
+                        >
+                            <Button
+                                variant="next"
+                                disabled={!barberId}
+                                style={{ opacity: !barberId ? 0.5 : 1 }}
+                            >
+                                Next
+                            </Button>
+                        </Link>
                     </div>
                 </div>
             </div>

@@ -2,6 +2,7 @@
 
 import styles from './layout.module.css';
 import { usePathname } from 'next/navigation';
+import { BookingProvider } from './BookingContext';
 
 export default function BookLayout({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
@@ -17,26 +18,28 @@ export default function BookLayout({ children }: { children: React.ReactNode }) 
     ];
 
     return (
-        <section className={styles.section}>
-            <div className={styles.mainContainer}>
-                <div className={styles.container}>
-                    <h2 className={styles.header}>Book an Appointment</h2>
-                    <div className={styles.stepsContainer}>
-                        {steps.map((step) => (
-                            <div
-                                key={step.num}
-                                className={`${styles.stepItem} ${isActive(step.path) ? styles.active : ''}`}
-                            >
-                                <div className={styles.stepNumber}>
-                                    {step.num}
+        <BookingProvider>
+            <section className={styles.section}>
+                <div className={styles.mainContainer}>
+                    <div className={styles.container}>
+                        <h2 className={styles.header}>Book an Appointment</h2>
+                        <div className={styles.stepsContainer}>
+                            {steps.map((step) => (
+                                <div
+                                    key={step.num}
+                                    className={`${styles.stepItem} ${isActive(step.path) ? styles.active : ''}`}
+                                >
+                                    <div className={styles.stepNumber}>
+                                        {step.num}
+                                    </div>
+                                    <span>{step.label}</span>
                                 </div>
-                                <span>{step.label}</span>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
+                        {children}
                     </div>
-                    {children}
                 </div>
-            </div>
-        </section>
+            </section>
+        </BookingProvider>
     );
 }

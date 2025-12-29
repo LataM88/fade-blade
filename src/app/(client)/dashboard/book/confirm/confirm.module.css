@@ -1,0 +1,135 @@
+.content {
+    display: flex;
+    justify-content: center;
+    padding: 16px;
+    height: 100%;
+}
+
+.card {
+    background-color: #4a4a4a;
+    border-radius: 16px;
+    padding: 0;
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.cardHeader {
+    background-color: #3d3d3d;
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.barberInfo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.photoWrapper {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    border: 2px solid var(--primary-yellow);
+}
+
+.photoWrapper img {
+    object-fit: cover;
+}
+
+.barberDetails h2 {
+    color: var(--primary-yellow);
+    font-size: 24px;
+    margin: 0 0 4px 0;
+}
+
+.barberDetails p {
+    color: #ccc;
+    margin: 0;
+    font-size: 14px;
+}
+
+.dateTime {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    color: var(--white);
+}
+
+.date {
+    font-weight: 600;
+}
+
+.time {
+    color: #ccc;
+}
+
+.cardBody {
+    padding: 24px;
+    color: var(--white);
+}
+
+.servicesList {
+    margin-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 16px;
+}
+
+.serviceItem {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.price {
+    font-weight: 600;
+}
+
+.totalRow {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contactInfo {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #ccc;
+}
+
+.userContact h4,
+.salonLocation h4 {
+    color: var(--white);
+    margin: 0 0 8px 0;
+    font-size: 16px;
+}
+
+.btnContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+    padding: 16px 0 0 0;
+}
+
+.successMessage {
+    background-color: rgba(118, 255, 3, 0.1);
+    color: #76ff03;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    text-align: center;
+    border: 1px solid #76ff03;
+}
