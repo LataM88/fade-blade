@@ -44,7 +44,7 @@ export default function Dashboard() {
 
     const [upcomingAppointments, setUpcomingAppointments] = useState<Appointment[]>([]);
     const [pastAppointments, setPastAppointments] = useState<Appointment[]>([]);
-    const [barberCounts, setBarberCounts] = useState<Record<string, number>>({ max: 0, kevin: 0, jake: 0 });
+    const [barberCounts, setBarberCounts] = useState<Record<string, number>>({});
     const [nextAppointment, setNextAppointment] = useState<Appointment | null>(null);
     const [visitsThisMonth, setVisitsThisMonth] = useState(0);
     const [totalVisits, setTotalVisits] = useState(0);
@@ -103,11 +103,13 @@ export default function Dashboard() {
                 ).length;
                 setVisitsThisMonth(thisMonthVisits);
 
-                const counts: Record<string, number> = { max: 0, kevin: 0, jake: 0 };
+                const counts: Record<string, number> = {};
                 completedVisits.forEach((app: any) => {
-                    const name = app.profiles?.first_name?.toLowerCase();
-                    if (name && counts.hasOwnProperty(name)) {
-                        counts[name]++;
+                    const name = app.profiles?.first_name;
+                    if (name) {
+                        const key = name.toLowerCase();
+                        // Store display name separately or capitalize later, for now key matches logic
+                        counts[key] = (counts[key] || 0) + 1;
                     }
                 });
 
@@ -115,15 +117,23 @@ export default function Dashboard() {
 
                 let maxVisits = 0;
                 let topName = 'None';
-                for (const [name, count] of Object.entries(barberCounts)) {
+
+                // If counts is empty, maxVisits remains 0, topName 'None'
+                for (const [key, count] of Object.entries(counts)) {
                     if (count > maxVisits) {
                         maxVisits = count;
-                        topName = name.charAt(0).toUpperCase() + name.slice(1);
+                        // specific capitalization fallback
+                        topName = key.charAt(0).toUpperCase() + key.slice(1);
                     }
                 }
+
+                // Show top barber even if visits are low, as long as > 0
                 if (maxVisits > 0) {
                     setTopBarberName(topName);
                     setTopBarberVisits(maxVisits);
+                } else {
+                    setTopBarberName("None");
+                    setTopBarberVisits(0);
                 }
 
             } catch (error) {
@@ -265,7 +275,7 @@ export default function Dashboard() {
                         {pastAppointments.length === 0 ? (
                             <div className={styles.tableRow} style={{ justifyContent: 'center', color: 'var(--text-white-50)' }}>No previous visits.</div>
                         ) : (
-                            pastAppointments.map((apt) => (
+                            pastAppointments.slice(0, 5).map((apt) => (
                                 <div key={apt.id} className={styles.tableRow}>
                                     <span>{formatDate(apt.start_time)}</span>
                                     <span>{apt.profiles?.first_name}</span>

@@ -13,21 +13,44 @@ interface Barber {
 
 export default function BarberPage() {
     const [barbers, setBarbers] = useState<Barber[]>([]);
+    const [visitCounts, setVisitCounts] = useState<Record<string, number>>({});
     const { barberId, setBarberId } = useBooking();
 
     useEffect(() => {
-        const fetchBarbers = async () => {
-            const { data, error } = await supabase
+        const fetchData = async () => {
+            const { data: { user } } = await supabase.auth.getUser();
+
+            const { data: barbersData, error: barbersError } = await supabase
                 .from('profiles')
                 .select('id, first_name')
                 .eq('role', 'barber');
-            if (error) {
-                console.error('Error fetching barbers:', error);
+
+            if (barbersError) {
+                console.error('Error fetching barbers:', barbersError);
             } else {
-                setBarbers(data || []);
+                setBarbers(barbersData || []);
+            }
+
+            if (user) {
+                const now = new Date().toISOString();
+                const { data: appointments, error: apptError } = await supabase
+                    .from('appointments')
+                    .select('barber_id')
+                    .eq('user_id', user.id)
+                    .lt('start_time', now);
+
+                if (!apptError && appointments) {
+                    const counts: Record<string, number> = {};
+                    appointments.forEach((app: any) => {
+                        if (app.barber_id) {
+                            counts[app.barber_id] = (counts[app.barber_id] || 0) + 1;
+                        }
+                    });
+                    setVisitCounts(counts);
+                }
             }
         }
-        fetchBarbers();
+        fetchData();
     }, []);
 
     const handleSelect = (id: string) => {
@@ -64,8 +87,10 @@ export default function BarberPage() {
                                 <h3>{barber.first_name}</h3>
                                 <p>Master Barber</p>
                                 <p>⭐ 4.9</p>
-                                <p>30 visits with you</p>
-                                <Button variant="portfolio">Portfolio</Button>
+                                <p>{visitCounts[barber.id] || 0} visits with you</p>
+                                <Link href={`/barber/${barber.first_name.toLowerCase()}`} onClick={(e) => e.stopPropagation()}>
+                                    <Button variant="portfolio">Portfolio</Button>
+                                </Link>
                             </div>
                         </div>
                     ))}
