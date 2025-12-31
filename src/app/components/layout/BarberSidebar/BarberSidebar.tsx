@@ -33,7 +33,7 @@ export default function BarberSidebar() {
                     <LayoutDashboard className={styles.navIcon} />
                     Dashboard
                 </Link>
-                <Link href="/barber/dashboard/calendar" className={`${styles.navItem} ${isActive('/barber/dashboard/calendar') ? styles.active : ''}`}>
+                <Link href="/barber/calendar" className={`${styles.navItem} ${isActive('/barber/dashboard/calendar') ? styles.active : ''}`}>
                     <Calendar className={styles.navIcon} />
                     Calendar
                 </Link>
