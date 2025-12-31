@@ -39,14 +39,21 @@ export default function Login() {
         if (userId) {
             const { data: profile, error: profileError } = await supabase
                 .from('profiles')
-                .select('is_active')
+                .select('is_active, role')
                 .eq('id', userId)
                 .single();
 
-            if (profile && profile.is_active === false) {
-                await supabase.auth.signOut();
-                setGlobalError('Your account is not activated. Please check your email.');
-                return;
+            if (profile) {
+                if (profile.is_active === false) {
+                    await supabase.auth.signOut();
+                    setGlobalError('Your account is not activated. Please check your email.');
+                    return;
+                }
+
+                if (profile.role === 'barber') {
+                    router.push('/barber/dashboard');
+                    return;
+                }
             }
         }
 

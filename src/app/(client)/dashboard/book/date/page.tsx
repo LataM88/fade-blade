@@ -8,7 +8,6 @@ import Button from '@/app/components/ui/Button';
 import Link from 'next/link';
 import { useBooking } from '@/app/(client)/dashboard/book/BookingContext';
 import { format } from 'date-fns';
-import { supabase } from "@/lib/supabase/client";
 
 export default function DatePage() {
     const { date, setDate, time, setTime, barberId } = useBooking();
@@ -34,29 +33,27 @@ export default function DatePage() {
         const fetchAvailability = async () => {
             if (!barberId) return;
 
-            const startOfDay = new Date(selectedDate);
-            startOfDay.setHours(0, 0, 0, 0);
+            try {
+                const params = new URLSearchParams({
+                    barberId,
+                    date: selectedDate.toISOString()
+                });
 
-            const endOfDay = new Date(selectedDate);
-            endOfDay.setHours(23, 59, 59, 999);
+                const res = await fetch(`/api/appointments/availability?${params}`);
+                if (!res.ok) throw new Error("Failed to fetch availability");
 
-            const { data, error } = await supabase
-                .from('appointments')
-                .select('start_time')
-                .eq('barber_id', barberId)
-                .gte('start_time', startOfDay.toISOString())
-                .lte('start_time', endOfDay.toISOString());
+                const data = await res.json();
 
-            if (error) {
-                console.error('Error fetching availability:', error);
-            } else {
                 if (data) {
-                    const booked = data.map(app => {
-                        const date = new Date(app.start_time);
-                        return format(date, 'h:mm a');
+                    const booked = data.map((app: any) => {
+                        return format(new Date(app.start_time), 'h:mm a');
                     });
-                    setBookedSlots(booked);
+
+                    const bookedSet = new Set(booked);
+                    setBookedSlots(Array.from(bookedSet) as string[]);
                 }
+            } catch (error) {
+                console.error('Error fetching availability:', error);
             }
         };
 
@@ -89,7 +86,7 @@ export default function DatePage() {
                             className={styles.reactCalendar}
                             tileClassName={styles.calendarTile}
                             minDate={new Date()}
-                            tileDisabled={({ date }) => date.getDay() === 0} // 0 is Sunday
+                            tileDisabled={({ date }) => date.getDay() === 0}
                         />
                     </div>
                     <div className={styles.slotsContainer}>

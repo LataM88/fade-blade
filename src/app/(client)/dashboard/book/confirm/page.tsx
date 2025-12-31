@@ -68,31 +68,34 @@ export default function ConfirmPage() {
             const { data: { user } } = await supabase.auth.getUser();
             if (!user) throw new Error("No user logged in");
 
-            let currentStartTime = parse(time, 'h:mm a', date);
+            const currentStartTime = parse(time, 'h:mm a', date);
 
-            for (const service of services) {
-                const currentEndTime = addMinutes(currentStartTime, service.duration);
+            const res = await fetch('/api/appointments/book', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    user_id: user.id,
+                    barber_id: barberId,
+                    service_ids: serviceIds,
+                    start_time: currentStartTime.toISOString(),
+                    note: userDetails.note
+                })
+            });
 
-                const { error } = await supabase
-                    .from('appointments')
-                    .insert({
-                        user_id: user.id,
-                        barber_id: barberId,
-                        service_id: service.id,
-                        start_time: currentStartTime.toISOString(),
-                        end_time: currentEndTime.toISOString(),
-                        status: 'confirmed',
-                        notes: userDetails.note
-                    });
+            const data = await res.json();
 
-                if (error) throw error;
-                currentStartTime = currentEndTime;
+            if (!res.ok) {
+                if (res.status === 409) {
+                    alert("Ten termin został właśnie zajęty. Proszę wybrać inny.");
+                    return;
+                }
+                throw new Error(data.error || "Booking failed");
             }
 
             setSuccess(true);
-        } catch (error) {
+        } catch (error: any) {
             console.error('Booking failed:', error);
-            alert('Booking failed. Please try again.');
+            alert(error.message || 'Booking failed. Please try again.');
         } finally {
             setLoading(false);
         }

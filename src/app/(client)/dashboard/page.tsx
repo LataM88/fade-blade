@@ -108,7 +108,6 @@ export default function Dashboard() {
                     const name = app.profiles?.first_name;
                     if (name) {
                         const key = name.toLowerCase();
-                        // Store display name separately or capitalize later, for now key matches logic
                         counts[key] = (counts[key] || 0) + 1;
                     }
                 });
@@ -118,16 +117,13 @@ export default function Dashboard() {
                 let maxVisits = 0;
                 let topName = 'None';
 
-                // If counts is empty, maxVisits remains 0, topName 'None'
                 for (const [key, count] of Object.entries(counts)) {
                     if (count > maxVisits) {
                         maxVisits = count;
-                        // specific capitalization fallback
                         topName = key.charAt(0).toUpperCase() + key.slice(1);
                     }
                 }
 
-                // Show top barber even if visits are low, as long as > 0
                 if (maxVisits > 0) {
                     setTopBarberName(topName);
                     setTopBarberVisits(maxVisits);

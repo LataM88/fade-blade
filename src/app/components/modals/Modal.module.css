@@ -1,0 +1,169 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: var(--brown-secondary);
+    border: 1px solid var(--primary-yellow);
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    padding: 1.5rem;
+    color: var(--white);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.header h3 {
+    margin: 0;
+    color: var(--primary-yellow);
+    font-size: 1.25rem;
+}
+
+.header button {
+    background: none;
+    border: none;
+    color: var(--white);
+    cursor: pointer;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.field label {
+    font-size: 0.9rem;
+    color: var(--text-white-75);
+}
+
+.field input,
+.field select {
+    background: var(--border-white-4);
+    border: 1px solid var(--border-white-22);
+    padding: 0.75rem;
+    border-radius: 4px;
+    color: var(--white);
+    appearance: auto;
+}
+
+.field select option {
+    background-color: #020202;
+    color: var(--white);
+    padding: 10px;
+}
+
+.field input:focus,
+.field select:focus {
+    outline: none;
+    border-color: var(--primary-yellow);
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.submitBtn {
+    background-color: var(--primary-yellow);
+    color: var(--black);
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.backBtn {
+    background: transparent;
+    color: var(--text-white-75);
+    border: 1px solid var(--border-white-22);
+    padding: 0.75rem 2rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.error {
+    color: #ff5252;
+    font-size: 0.9rem;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--border-white-4);
+    border-radius: 4px;
+}
+
+.time {
+    font-weight: bold;
+    color: var(--primary-yellow);
+}
+
+.details {
+    flex: 1;
+}
+
+.name {
+    margin: 0;
+    font-weight: bold;
+}
+
+.service {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--text-white-75);
+}
+
+.status {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: #333;
+}
+
+.cancelBtn {
+    margin-right: 1rem;
+    background-color: var(--border-white-4);
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid var(--primary-yellow);
+    cursor: pointer;
+}

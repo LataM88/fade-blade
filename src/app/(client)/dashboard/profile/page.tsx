@@ -10,7 +10,6 @@ export default async function Profile() {
             <div className={styles.profileContainer}>
                 <h2>My profile</h2>
                 <div className={styles.profileContent}>
-                    {/* Accessing user profile logic here */}
                     <ProfileForm user={user} />
                 </div>
             </div>

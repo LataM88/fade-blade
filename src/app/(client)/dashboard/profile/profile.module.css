@@ -21,7 +21,6 @@
     gap: 2rem;
 }
 
-/* Add avatar section if we implement it later, for now form takes full width or we add a placeholder */
 .form {
     width: 100%;
     display: flex;
@@ -62,7 +61,6 @@
 
 .field input {
     background-color: #4a4a4a;
-    /* Dark gray input background */
     border: 1px solid transparent;
     border-radius: 6px;
     padding: 0.8rem 1rem;

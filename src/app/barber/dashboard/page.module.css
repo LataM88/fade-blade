@@ -1,0 +1,277 @@
+.topHeader {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    gap: 1rem;
+    border-bottom: 1px solid var(--border-white-22);
+}
+
+.adminInfo {
+    text-align: right;
+}
+
+.adminName {
+    font-size: 1.25rem;
+    color: var(--primary-yellow);
+    font-weight: bold;
+    margin: 0;
+}
+
+.adminRole {
+    font-size: 0.9rem;
+    color: var(--text-white-75);
+    margin: 0;
+}
+
+.container {
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.heroCard {
+    background-color: var(--brown-secondary);
+    border: 1px solid var(--primary-yellow);
+    border-radius: 8px;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.heroContent h2 {
+    color: var(--text-white-75);
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: normal;
+}
+
+.heroContent h1 {
+    color: var(--primary-yellow);
+    font-size: 2rem;
+    margin: 0 0 0.5rem 0;
+}
+
+.heroContent p {
+    color: var(--white);
+    margin: 0;
+}
+
+.clockIcon {
+    color: var(--primary-yellow);
+    width: 60px;
+    height: 60px;
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.statCard {
+    background-color: var(--brown-secondary);
+    border: 1px solid var(--border-white-22);
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.statCard:hover {
+    border-color: var(--primary-yellow);
+    transform: translateY(-2px);
+}
+
+.statIconWrapper {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+}
+
+.iconBlue {
+    background: rgba(33, 150, 243, 0.2);
+    color: #2196F3;
+}
+
+.iconGreen {
+    background: rgba(76, 175, 80, 0.2);
+    color: #4CAF50;
+}
+
+.iconOrange {
+    background: rgba(255, 152, 0, 0.2);
+    color: #FF9800;
+}
+
+.iconPurple {
+    background: rgba(156, 39, 176, 0.2);
+    color: #9C27B0;
+}
+
+.statTitle {
+    color: var(--text-white-75);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.statValue {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--white);
+    margin: 0;
+}
+
+.statSub {
+    font-size: 0.8rem;
+    color: var(--text-white-75);
+    margin: 0;
+}
+
+.mainGrid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+}
+
+.sectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.sectionTitle {
+    color: var(--primary-yellow);
+    font-size: 1.25rem;
+    margin: 0;
+}
+
+.viewAll {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.scheduleList {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.scheduleItem {
+    background-color: var(--border-white-4);
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    transition: background-color 0.2s;
+}
+
+.scheduleItem:hover {
+    background-color: var(--border-white-22);
+}
+
+.timeSlot {
+    min-width: 80px;
+}
+
+.timeStart {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--white);
+    display: block;
+}
+
+.timeEnd {
+    font-size: 0.9rem;
+    color: var(--text-white-75);
+}
+
+.clientInfo h4 {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--white);
+}
+
+.clientInfo p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-white-75);
+}
+
+.quickActions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.actionBtn {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-white-22);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: transparent;
+    color: var(--white);
+}
+
+.primaryBtn {
+    background-color: var(--primary-yellow);
+    color: var(--black);
+    border: none;
+}
+
+.primaryBtn:hover {
+    background-color: #c5a028;
+}
+
+.secondaryBtn:hover {
+    background-color: var(--border-white-22);
+    border-color: var(--text-white-75);
+}
+
+.summaryCard {
+    background-color: var(--brown-secondary);
+    border: 1px solid var(--primary-yellow);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+.summaryRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    color: var(--white);
+}
+
+.summaryRow.total {
+    border-top: 1px solid var(--border-white-22);
+    padding-top: 1rem;
+    margin-top: 1rem;
+    font-weight: bold;
+    color: var(--primary-yellow);
+}
