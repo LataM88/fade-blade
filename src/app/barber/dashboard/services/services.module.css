@@ -1,0 +1,117 @@
+.container {
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.title {
+    color: var(--primary-yellow);
+    font-size: 2rem;
+    margin: 0 0 0.5rem 0;
+}
+
+.subtitle {
+    color: var(--white);
+    font-size: 1rem;
+    margin: 0;
+}
+
+
+.tableContainer {
+    background-color: var(--brown-secondary);
+    border: 1px solid var(--primary-yellow);
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 1rem;
+}
+
+.tableHeaderRow {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 2fr 1fr 1fr;
+    padding: 1rem;
+    background-color: rgba(212, 175, 55, 0.05);
+    color: var(--primary-yellow);
+    font-weight: bold;
+    border-bottom: 1px solid var(--border-white-4);
+}
+
+.tableRow {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 2fr 1fr 1fr;
+    padding: 1.5rem 1rem;
+    border-bottom: 1px solid var(--border-white-4);
+    align-items: center;
+    color: var(--white);
+    transition: background-color 0.2s;
+}
+
+.tableRow:last-child {
+    border-bottom: none;
+}
+
+.tableRow:hover {
+    background-color: var(--border-white-4);
+}
+
+.serviceName {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.barberList {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+    color: var(--text-white-75);
+}
+
+.statusActive {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #4CAF50;
+    font-weight: 500;
+}
+
+.toggleIcon {
+    color: #4CAF50;
+}
+
+.actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.iconBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.editBtn {
+    color: #4CAF50;
+    border: 1px solid #4CAF50;
+    border-radius: 50%;
+    border: none;
+}
+
+.deleteBtn {
+    color: #ff5252;
+}
+
+.iconBtn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
