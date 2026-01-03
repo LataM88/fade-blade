@@ -13,7 +13,6 @@ export async function getBarberAppointments(start: string, end: string) {
         return { error: "Not authenticated" };
     }
 
-    // Verify role
     const { data: profile } = await supabase
         .from('profiles')
         .select('role')

@@ -2,7 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase/client';
-import Button from '@/app/components/ui/Button';
+import styles from './appointments.module.css';
+import { Trash2, ChevronRight, Check } from 'lucide-react';
+import ConfirmationModal from '@/app/components/modals/ConfirmationModal';
+import Link from 'next/link';
 
 interface Appointment {
     id: string;
@@ -15,6 +18,8 @@ interface Appointment {
     profiles: {
         first_name: string;
         last_name: string;
+        email: string;
+        phone_number?: string;
     } | null;
     services: {
         name: string;
@@ -23,18 +28,21 @@ interface Appointment {
     } | null;
 }
 
-
-
 export default function BarberAppointmentsPage() {
     const [appointments, setAppointments] = useState<Appointment[]>([]);
     const [loading, setLoading] = useState(true);
     const [filter, setFilter] = useState('all');
+    const [showConfirmModal, setShowConfirmModal] = useState(false);
+    const [itemToDelete, setItemToDelete] = useState<string | null>(null);
 
     const fetchAppointments = async () => {
         const { data: { user } } = await supabase.auth.getUser();
         if (!user) return;
 
         try {
+            // Fetch all appointments for the barber (no date limit for now, or maybe last 30 days + future? 
+            // The prompt implies "All Appointments", so let's stick to default fetch which likely handles query params or returns all if none).
+            // Actually the previous code used `api/barber/appointments?barberId=...`.
             const res = await fetch(`/api/barber/appointments?barberId=${user.id}`);
             if (!res.ok) throw new Error("Failed to fetch");
 
@@ -55,10 +63,7 @@ export default function BarberAppointmentsPage() {
                     services: Array.isArray(app.services) ? app.services[0] : app.services
                 }));
 
-                if (filter !== 'all') {
-                    formattedAppointments = formattedAppointments.filter(app => app.status === filter);
-                }
-
+                // Sort by date descending (newest first)
                 formattedAppointments.sort((a, b) => new Date(b.start_time).getTime() - new Date(a.start_time).getTime());
 
                 setAppointments(formattedAppointments);
@@ -72,141 +77,182 @@ export default function BarberAppointmentsPage() {
 
     useEffect(() => {
         fetchAppointments();
-    }, [filter]);
+    }, []);
 
-    const updateStatus = async (id: string, newStatus: string) => {
-        await supabase
-            .from('appointments')
-            .update({ status: newStatus })
-            .eq('id', id);
-
-        setAppointments(appointments.map(app =>
-            app.id === id ? { ...app, status: newStatus } : app
-        ));
+    const handleDeleteClick = (id: string) => {
+        setItemToDelete(id);
+        setShowConfirmModal(true);
     };
 
-    if (loading) return <div style={{ padding: '2rem' }}>Loading appointments...</div>;
+    const confirmDelete = async () => {
+        if (!itemToDelete) return;
+
+        try {
+            const res = await fetch(`/api/barber/appointments?id=${itemToDelete}`, { method: 'DELETE' });
+            if (!res.ok) throw new Error("Failed to delete");
+
+            setAppointments(prev => prev.filter(app => app.id !== itemToDelete));
+            setShowConfirmModal(false);
+            setItemToDelete(null);
+        } catch (error) {
+            console.error("Delete error:", error);
+            alert("Failed to delete appointment");
+        }
+    };
+
+    const handleConfirm = async (id: string) => {
+        try {
+            const res = await fetch(`/api/barber/appointments?id=${id}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ status: 'confirmed' })
+            });
+
+            if (!res.ok) throw new Error("Failed to confirm");
+
+            setAppointments(prev => prev.map(app =>
+                app.id === id ? { ...app, status: 'confirmed' } : app
+            ));
+        } catch (error) {
+            console.error("Confirm error:", error);
+            alert("Failed to confirm appointment");
+        }
+    };
+
+    const filteredAppointments = appointments.filter(app => {
+        if (filter === 'all') return true;
+        return app.status === filter;
+    });
+
+    const getStatusClass = (status: string) => {
+        switch (status) {
+            case 'confirmed': return styles.statusConfirmed;
+            case 'cancelled': return styles.statusCancelled;
+            case 'pending': return styles.statusPending;
+            default: return '';
+        }
+    };
+
+    const formatDateTime = (dateStr: string) => {
+        const date = new Date(dateStr);
+        return {
+            date: date.toLocaleDateString(),
+            time: date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        };
+    };
+
+    if (loading) return <div className={styles.container}>Loading appointments...</div>;
 
     return (
-        <div style={{ padding: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-                <h1 style={{ fontSize: '2rem', color: '#d4af37' }}>Appointments</h1>
-                <select
-                    value={filter}
-                    onChange={(e) => setFilter(e.target.value)}
-                    style={{ padding: '0.5rem', borderRadius: '4px', background: '#333', color: '#fff', border: '1px solid #555' }}
-                >
-                    <option value="all">All Status</option>
-                    <option value="pending">Pending</option>
-                    <option value="confirmed">Confirmed</option>
-                    <option value="completed">Completed</option>
-                    <option value="cancelled">Cancelled</option>
-                </select>
+        <div className={styles.container}>
+            <div className={styles.header}>
+                <div className={styles.topRow}>
+                    <div>
+                        <h1 className={styles.title}>All Appointments</h1>
+                        <p className={styles.subtitle}>Manage and track all bookings</p>
+                    </div>
+                    <Link href="/barber/calendar" className={styles.viewNext}>
+                        View next weeks <ChevronRight size={16} />
+                    </Link>
+                </div>
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                {appointments.map((app) => (
-                    <div key={app.id} style={{
-                        background: '#252525',
-                        padding: '1.5rem',
-                        borderRadius: '8px',
-                        border: '1px solid #333'
-                    }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem' }}>
-                            <div>
-                                <p style={{ fontSize: '1.2rem', fontWeight: 'bold', color: '#fff' }}>
-                                    {new Date(app.start_time).toLocaleDateString()} at {new Date(app.start_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                                </p>
-                                <p style={{ color: '#aaa', marginTop: '0.25rem' }}>
-                                    Client: {app.profiles
-                                        ? `${app.profiles.first_name} ${app.profiles.last_name}`
-                                        : (app.client_name || app.client_last_name)
-                                            ? `${app.client_name || ''} ${app.client_last_name || ''}`
-                                            : 'Unknown Client'}
-                                </p>
-                                <p style={{ color: '#aaa' }}>
-                                    Service: {app.services?.name} (${app.services?.price}) - {app.services?.duration} min
-                                </p>
-                            </div>
-                            <div style={{ textAlign: 'right' }}>
-                                <span style={{
-                                    padding: '0.4rem 1rem',
-                                    borderRadius: '20px',
-                                    fontSize: '0.9rem',
-                                    background:
-                                        app.status === 'confirmed' ? 'rgba(76, 175, 80, 0.2)' :
-                                            app.status === 'cancelled' ? 'rgba(244, 67, 54, 0.2)' :
-                                                app.status === 'completed' ? 'rgba(33, 150, 243, 0.2)' :
-                                                    'rgba(212, 175, 55, 0.2)',
-                                    color:
-                                        app.status === 'confirmed' ? '#4CAF50' :
-                                            app.status === 'cancelled' ? '#f44336' :
-                                                app.status === 'completed' ? '#2196F3' :
-                                                    '#d4af37',
-                                    border: `1px solid ${app.status === 'confirmed' ? '#4CAF50' :
-                                        app.status === 'cancelled' ? '#f44336' :
-                                            app.status === 'completed' ? '#2196F3' :
-                                                '#d4af37'
-                                        }`
-                                }}>
-                                    {app.status.toUpperCase()}
-                                </span>
-                            </div>
-                        </div>
-
-                        {app.status === 'pending' && (
-                            <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem', paddingTop: '1rem', borderTop: '1px solid #333' }}>
-                                <button
-                                    onClick={() => updateStatus(app.id, 'confirmed')}
-                                    style={{
-                                        padding: '0.5rem 1.5rem',
-                                        background: '#4CAF50',
-                                        color: 'white',
-                                        border: 'none',
-                                        borderRadius: '4px',
-                                        cursor: 'pointer',
-                                        fontWeight: 'bold'
-                                    }}
-                                >
-                                    Confirm
-                                </button>
-                                <button
-                                    onClick={() => updateStatus(app.id, 'rejected')}
-                                    style={{
-                                        padding: '0.5rem 1.5rem',
-                                        background: 'transparent',
-                                        color: '#f44336',
-                                        border: '1px solid #f44336',
-                                        borderRadius: '4px',
-                                        cursor: 'pointer'
-                                    }}
-                                >
-                                    Reject
-                                </button>
-                            </div>
-                        )}
-
-                        {app.status === 'confirmed' && (
-                            <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem', paddingTop: '1rem', borderTop: '1px solid #333' }}>
-                                <button
-                                    onClick={() => updateStatus(app.id, 'completed')}
-                                    style={{
-                                        padding: '0.5rem 1.5rem',
-                                        background: '#2196F3',
-                                        color: 'white',
-                                        border: 'none',
-                                        borderRadius: '4px',
-                                        cursor: 'pointer',
-                                        fontWeight: 'bold'
-                                    }}
-                                >
-                                    Mark Completed
-                                </button>
-                            </div>
-                        )}
-                    </div>
+            <div className={styles.tabs}>
+                {['all', 'pending', 'confirmed', 'cancelled', 'completed'].map((f) => (
+                    <button
+                        key={f}
+                        className={`${styles.tab} ${filter === f ? styles.activeTab : ''}`}
+                        onClick={() => setFilter(f)}
+                    >
+                        {f.charAt(0).toUpperCase() + f.slice(1)}
+                    </button>
                 ))}
             </div>
+
+            <div className={styles.tableContainer}>
+                <table className={styles.table}>
+                    <thead>
+                        <tr>
+                            <th>Date&Time</th>
+                            <th>Client</th>
+                            <th>Service</th>
+                            <th>Status</th>
+                            <th>Duration</th>
+                            <th>Price</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {filteredAppointments.map((app) => {
+                            const { date, time } = formatDateTime(app.start_time);
+                            const clientName = app.profiles
+                                ? `${app.profiles.first_name} ${app.profiles.last_name}`
+                                : (app.client_name || app.client_last_name)
+                                    ? `${app.client_name || ''} ${app.client_last_name || ''}`.trim()
+                                    : 'Unknown';
+
+                            const clientContact = app.profiles?.phone_number || app.client_phone || app.profiles?.email || app.client_email || 'No contact info';
+
+                            return (
+                                <tr key={app.id}>
+                                    <td>
+                                        <div style={{ fontWeight: 'bold' }}>{date}</div>
+                                        <div style={{ color: 'var(--text-white-75)', fontSize: '0.9rem' }}>{time}</div>
+                                    </td>
+                                    <td className={styles.clientCell}>
+                                        <span className={styles.clientName}>{clientName}</span>
+                                        <span className={styles.clientContact}>{clientContact}</span>
+                                    </td>
+                                    <td>{app.services?.name || '-'}</td>
+                                    <td>
+                                        <span className={`${styles.statusBadge} ${getStatusClass(app.status)}`}>
+                                            {app.status.charAt(0).toUpperCase() + app.status.slice(1)}
+                                        </span>
+                                    </td>
+                                    <td>{app.services?.duration ? `${app.services.duration} min` : '-'}</td>
+                                    <td>{app.services?.price ? `${app.services.price}€` : '-'}</td>
+                                    <td>
+                                        <div style={{ display: 'flex', gap: '0.5rem' }}>
+                                            {app.status === 'pending' && (
+                                                <button
+                                                    className={styles.confirmBtn}
+                                                    onClick={() => handleConfirm(app.id)}
+                                                    title="Confirm Appointment"
+                                                >
+                                                    <Check size={18} />
+                                                </button>
+                                            )}
+                                            <button
+                                                className={styles.deleteBtn}
+                                                onClick={() => handleDeleteClick(app.id)}
+                                                title="Delete Appointment"
+                                            >
+                                                <Trash2 size={18} />
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            );
+                        })}
+                        {filteredAppointments.length === 0 && (
+                            <tr>
+                                <td colSpan={7} style={{ textAlign: 'center', color: '#888' }}>
+                                    No appointments found for this filter.
+                                </td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+            </div>
+
+            {showConfirmModal && (
+                <ConfirmationModal
+                    onClose={() => setShowConfirmModal(false)}
+                    onConfirm={confirmDelete}
+                    title="Delete Appointment"
+                    message="Are you sure you want to delete this appointment? This action cannot be undone."
+                />
+            )}
         </div>
     );
 }

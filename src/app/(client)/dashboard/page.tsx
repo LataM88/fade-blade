@@ -233,7 +233,9 @@ export default function Dashboard() {
                                                 <p>{apt.services?.name || 'Service'}</p>
                                             </div>
                                         </div>
-                                        <div className={styles.statusBadge}>Confirmed</div>
+                                        <div className={`${styles.statusBadge} ${apt.status === 'pending' ? styles.pending : ''}`}>
+                                            {apt.status === 'pending' ? 'Pending' : 'Confirmed'}
+                                        </div>
                                     </div>
                                     <div className={styles.cardDetails}>
                                         <div className={styles.detailItem}>

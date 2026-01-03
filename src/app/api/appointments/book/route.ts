@@ -46,7 +46,7 @@ export async function POST(request: Request) {
                 service_id: sId,
                 start_time: currentStartTime.toISOString(),
                 end_time: endTime.toISOString(),
-                status: 'confirmed',
+                status: 'pending',
                 notes: note || ''
             });
 

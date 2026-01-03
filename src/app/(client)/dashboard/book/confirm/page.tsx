@@ -105,8 +105,8 @@ export default function ConfirmPage() {
         return (
             <div className={styles.content} style={{ flexDirection: 'column', alignItems: 'center', textAlign: 'center', color: 'white' }}>
                 <div className={styles.successMessage}>
-                    <h2>Booking Confirmed!</h2>
-                    <p>Your appointment has been successfully scheduled.</p>
+                    <h2>Booking Received!</h2>
+                    <p>Your appointment is pending confirmation by the barber.</p>
                 </div>
                 <Link href="/dashboard"><Button variant="book-appointment">Go to Dashboard</Button></Link>
             </div>

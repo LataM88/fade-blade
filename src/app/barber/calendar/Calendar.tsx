@@ -68,11 +68,9 @@ export default function Calendar() {
     }, [currentWeekStart]);
 
     const getStatusForSlot = (day: Date, hourString: string, hourValue: number) => {
-        // Sunday is closed
         if (day.getDay() === 0) return { type: 'closed' };
 
 
-        // Check for appointments
         const appointment = appointments.find(app => {
             const appStart = new Date(app.start_time);
             return isSameDay(appStart, day) && getHours(appStart) === hourValue;
@@ -109,7 +107,7 @@ export default function Calendar() {
             };
         }
 
-        return null; // Free slot
+        return null;
     };
 
     return (
@@ -134,7 +132,6 @@ export default function Calendar() {
             </div>
 
             <div className={styles.calendarGrid}>
-                {/* Header Row */}
                 <div className={styles.headerCell}>Time</div>
                 {days.map((day, i) => (
                     <div key={i} className={styles.headerCell}>
@@ -142,7 +139,6 @@ export default function Calendar() {
                     </div>
                 ))}
 
-                {/* Time Slots */}
                 {HOURS.map((hour, hourIndex) => (
                     <React.Fragment key={hour}>
                         <div className={styles.timeCell}>{hour}</div>

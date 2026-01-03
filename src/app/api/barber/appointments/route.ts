@@ -61,6 +61,30 @@ export async function DELETE(request: Request) {
         if (error) throw error;
 
         return NextResponse.json({ success: true });
+    } catch (error: any) {
+        return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+}
+
+export async function PATCH(request: Request) {
+    try {
+        const { searchParams } = new URL(request.url);
+        const id = searchParams.get('id');
+        const body = await request.json();
+
+        if (!id) {
+            return NextResponse.json({ error: 'Appointment ID required' }, { status: 400 });
+        }
+
+        const supabase = createAdminClient();
+        const { error } = await supabase
+            .from('appointments')
+            .update(body)
+            .eq('id', id);
+
+        if (error) throw error;
+
+        return NextResponse.json({ success: true });
 
     } catch (error: any) {
         return NextResponse.json({ error: error.message }, { status: 500 });
