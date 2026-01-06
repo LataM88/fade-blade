@@ -40,9 +40,6 @@ export default function BarberAppointmentsPage() {
         if (!user) return;
 
         try {
-            // Fetch all appointments for the barber (no date limit for now, or maybe last 30 days + future? 
-            // The prompt implies "All Appointments", so let's stick to default fetch which likely handles query params or returns all if none).
-            // Actually the previous code used `api/barber/appointments?barberId=...`.
             const res = await fetch(`/api/barber/appointments?barberId=${user.id}`);
             if (!res.ok) throw new Error("Failed to fetch");
 
@@ -63,7 +60,6 @@ export default function BarberAppointmentsPage() {
                     services: Array.isArray(app.services) ? app.services[0] : app.services
                 }));
 
-                // Sort by date descending (newest first)
                 formattedAppointments.sort((a, b) => new Date(b.start_time).getTime() - new Date(a.start_time).getTime());
 
                 setAppointments(formattedAppointments);

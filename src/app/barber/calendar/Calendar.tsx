@@ -55,8 +55,7 @@ export default function Calendar() {
 
             const { data, error } = await getBarberAppointments(start, end);
 
-            if (data) {
-                // console.log('Fetched appointments:', data); 
+            if (data) { 
                 setAppointments(data as unknown as Appointment[]);
             } else if (error) {
                 console.error(error);

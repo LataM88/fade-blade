@@ -49,10 +49,7 @@ export default function BarberSidebar() {
                     <Users className={styles.navIcon} />
                     Clients
                 </Link>
-                <Link href="/barber/dashboard/settings" className={`${styles.navItem} ${isActive('/barber/dashboard/settings') ? styles.active : ''}`}>
-                    <Settings className={styles.navIcon} />
-                    Settings
-                </Link>
+
             </nav>
 
             <div className={styles.logoutContainer}>

@@ -28,9 +28,6 @@ export async function PATCH(request: Request) {
             return NextResponse.json({ error: 'Service ID required' }, { status: 400 });
         }
 
-        // Use admin client to bypass RLS for updates if necessary, 
-        // though regular user might have rights if they are admin/barber. 
-        // Using admin client is safer for "barber dashboard" actions to ensure it works.
         const supabase = createAdminClient();
 
         const { error } = await supabase

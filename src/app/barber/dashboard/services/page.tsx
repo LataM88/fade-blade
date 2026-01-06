@@ -51,7 +51,6 @@ export default function ServicesPage() {
 
             if (!res.ok) throw new Error("Failed to update");
 
-            // Update local state
             setServices(prev => prev.map(s =>
                 s.id === editingService.id ? { ...s, price: newPrice } : s
             ));
