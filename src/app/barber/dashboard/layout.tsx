@@ -1,4 +1,5 @@
 import BarberSidebar from "@/app/components/layout/BarberSidebar/BarberSidebar";
+import styles from './layout.module.css';
 
 export default function BarberDashboardLayout({
     children,
@@ -6,15 +7,9 @@ export default function BarberDashboardLayout({
     children: React.ReactNode;
 }) {
     return (
-        <div style={{ display: 'flex' }}>
+        <div className={styles.container}>
             <BarberSidebar />
-            <main style={{
-                flex: 1,
-                marginLeft: '250px',
-                minHeight: '100vh',
-                backgroundColor: '#121212',
-                color: '#fff'
-            }}>
+            <main className={styles.mainContent}>
                 {children}
             </main>
         </div>

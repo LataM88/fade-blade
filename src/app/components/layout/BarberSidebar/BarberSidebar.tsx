@@ -49,7 +49,6 @@ export default function BarberSidebar() {
                     <Users className={styles.navIcon} />
                     Clients
                 </Link>
-
             </nav>
 
             <div className={styles.logoutContainer}>

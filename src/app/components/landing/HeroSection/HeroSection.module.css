@@ -30,3 +30,33 @@
     color: var(--primary-yellow);
     margin: 24px;
 }
+
+@media (max-width: 1024px) {
+    .hero {
+        background-position: 60% center;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding-top: 120px;
+        text-align: center;
+        background-position: 70% center;
+    }
+
+    .hero h1 {
+        margin-left: 0;
+        font-size: 36px;
+        padding: 0 20px;
+    }
+
+    .hero p {
+        margin-left: 0;
+        font-size: 18px;
+        padding: 0 20px;
+    }
+
+    .hero Button {
+        margin-left: 0;
+    }
+}

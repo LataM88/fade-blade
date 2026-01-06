@@ -55,7 +55,7 @@ export default function Calendar() {
 
             const { data, error } = await getBarberAppointments(start, end);
 
-            if (data) { 
+            if (data) {
                 setAppointments(data as unknown as Appointment[]);
             } else if (error) {
                 console.error(error);
@@ -130,40 +130,42 @@ export default function Calendar() {
                 </div>
             </div>
 
-            <div className={styles.calendarGrid}>
-                <div className={styles.headerCell}>Time</div>
-                {days.map((day, i) => (
-                    <div key={i} className={styles.headerCell}>
-                        {format(day, 'EEE')}
-                    </div>
-                ))}
+            <div className={styles.gridWrapper}>
+                <div className={styles.calendarGrid}>
+                    <div className={styles.headerCell}>Time</div>
+                    {days.map((day, i) => (
+                        <div key={i} className={styles.headerCell}>
+                            {format(day, 'EEE')}
+                        </div>
+                    ))}
 
-                {HOURS.map((hour, hourIndex) => (
-                    <React.Fragment key={hour}>
-                        <div className={styles.timeCell}>{hour}</div>
-                        {days.map((day, dayIndex) => {
-                            const status = getStatusForSlot(day, hour, HOUR_VALUES[hourIndex]);
+                    {HOURS.map((hour, hourIndex) => (
+                        <React.Fragment key={hour}>
+                            <div className={styles.timeCell}>{hour}</div>
+                            {days.map((day, dayIndex) => {
+                                const status = getStatusForSlot(day, hour, HOUR_VALUES[hourIndex]);
 
-                            return (
-                                <div key={`${dayIndex}-${hourIndex}`} className={styles.slotCell}>
-                                    {status?.type === 'appointment' && (
-                                        <div className={styles.appointmentCard}>
-                                            <span>{status.clientName}</span>
-                                            <span>{status.service}</span>
-                                            <span>{status.duration}</span>
-                                        </div>
-                                    )}
-                                    {status?.type === 'break' && (
-                                        <div className={styles.breakCard}>Break</div>
-                                    )}
-                                    {status?.type === 'closed' && (
-                                        <div className={styles.closedCard}>Closed</div>
-                                    )}
-                                </div>
-                            );
-                        })}
-                    </React.Fragment>
-                ))}
+                                return (
+                                    <div key={`${dayIndex}-${hourIndex}`} className={styles.slotCell}>
+                                        {status?.type === 'appointment' && (
+                                            <div className={styles.appointmentCard}>
+                                                <span>{status.clientName}</span>
+                                                <span>{status.service}</span>
+                                                <span>{status.duration}</span>
+                                            </div>
+                                        )}
+                                        {status?.type === 'break' && (
+                                            <div className={styles.breakCard}>Break</div>
+                                        )}
+                                        {status?.type === 'closed' && (
+                                            <div className={styles.closedCard}>Closed</div>
+                                        )}
+                                    </div>
+                                );
+                            })}
+                        </React.Fragment>
+                    ))}
+                </div>
             </div>
 
             <div className={styles.statusLegend}>

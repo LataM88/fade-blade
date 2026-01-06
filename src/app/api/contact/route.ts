@@ -20,7 +20,6 @@ export async function POST(request: Request) {
             );
         }
 
-        // Configure transporter
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
@@ -32,7 +31,7 @@ export async function POST(request: Request) {
         const mailOptions = {
             from: process.env.EMAIL_USER,
             to: 'fblade854@gmail.com',
-            replyTo: email, // Allow replying directly to the client
+            replyTo: email,
             subject: `New Contact Form Submission from ${name}`,
             text: `
 Name: ${name}

@@ -116,3 +116,44 @@
 .iconBtn:hover {
     background-color: rgba(255, 255, 255, 0.1);
 }
+
+@media (max-width: 900px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .searchContainer {
+        width: 100%;
+    }
+
+    .searchInput {
+        width: 100%;
+        min-width: auto;
+    }
+
+    .tableContainer {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        width: 100%;
+        display: block;
+    }
+
+    .tableHeaderRow,
+    .tableRow {
+        min-width: 900px;
+        /* Force minimum width */
+        grid-template-columns: 2fr 2fr 1.5fr 1.5fr 1fr;
+        /* Keep proportions but on a wide base */
+        gap: 1rem;
+    }
+
+    .actions {
+        justify-content: flex-start;
+    }
+}

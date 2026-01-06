@@ -210,23 +210,23 @@ export default function BarberAppointmentsPage() {
 
                             return (
                                 <tr key={app.id}>
-                                    <td>
+                                    <td data-label="Date&Time">
                                         <div style={{ fontWeight: 'bold' }}>{date}</div>
                                         <div style={{ color: 'var(--text-white-75)', fontSize: '0.9rem' }}>{time}</div>
                                     </td>
-                                    <td className={styles.clientCell}>
+                                    <td className={styles.clientCell} data-label="Client">
                                         <span className={styles.clientName}>{clientName}</span>
                                         <span className={styles.clientContact}>{clientContact}</span>
                                     </td>
-                                    <td>{app.services?.name || '-'}</td>
-                                    <td>
+                                    <td data-label="Service">{app.services?.name || '-'}</td>
+                                    <td data-label="Status">
                                         <span className={`${styles.statusBadge} ${getStatusClass(app.status)}`}>
                                             {app.status.charAt(0).toUpperCase() + app.status.slice(1)}
                                         </span>
                                     </td>
-                                    <td>{app.services?.duration ? `${app.services.duration} min` : '-'}</td>
-                                    <td>{app.services?.price ? `${app.services.price}€` : '-'}</td>
-                                    <td>
+                                    <td data-label="Duration">{app.services?.duration ? `${app.services.duration} min` : '-'}</td>
+                                    <td data-label="Price">{app.services?.price ? `${app.services.price}€` : '-'}</td>
+                                    <td data-label="Actions">
                                         <div style={{ display: 'flex', gap: '0.5rem' }}>
                                             {app.status === 'pending' && (
                                                 <button

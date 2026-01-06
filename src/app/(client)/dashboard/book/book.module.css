@@ -176,5 +176,39 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    align-items: center;
     margin-top: 48px;
+}
+
+@media (max-width: 768px) {
+    .mainContainer {
+        padding: 12px;
+        padding-bottom: 90px;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .stepsContainer::before {
+        display: none;
+    }
+
+    .stepItem h1 {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+
+    .servicesGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .btnContainer {
+        flex-direction: column-reverse;
+        /* Stack buttons, maybe back button below */
+        gap: 16px;
+    }
+
+    .btnContainer button {
+        width: 100%;
+    }
 }

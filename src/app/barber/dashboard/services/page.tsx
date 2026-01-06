@@ -84,19 +84,19 @@ export default function ServicesPage() {
 
                 {services.map(service => (
                     <div key={service.id} className={styles.tableRow}>
-                        <span className={styles.serviceName}>{service.name}</span>
-                        <span>{service.duration} min</span>
-                        <span>{service.price}€</span>
-                        <div className={styles.barberList}>
+                        <span className={styles.serviceName} data-label="Service Name">{service.name}</span>
+                        <span data-label="Duration">{service.duration} min</span>
+                        <span data-label="Price">{service.price}€</span>
+                        <div className={styles.barberList} data-label="Available Barbers">
                             <span>Max</span>
                             <span>Kevin</span>
                             <span>Jake</span>
                         </div>
-                        <div className={styles.statusActive}>
+                        <div className={styles.statusActive} data-label="Status">
                             <ToggleRight size={24} className={styles.toggleIcon} />
                             Active
                         </div>
-                        <div className={styles.actions}>
+                        <div className={styles.actions} data-label="Actions">
                             <button
                                 className={`${styles.iconBtn} ${styles.editBtn}`}
                                 onClick={() => handleEditClick(service)}

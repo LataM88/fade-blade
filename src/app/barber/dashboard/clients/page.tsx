@@ -114,13 +114,13 @@ export default function BarberClientsPage() {
 
                 {filteredClients.map((client) => (
                     <div key={client.id} className={styles.tableRow}>
-                        <span className={styles.clientName}>{client.first_name} {client.last_name}</span>
-                        <span className={styles.clientInfo}>{client.email}</span>
-                        <span className={styles.clientInfo}>{client.phone || '-'}</span>
-                        <span className={styles.clientInfo}>
+                        <span className={styles.clientName} data-label="Name">{client.first_name} {client.last_name}</span>
+                        <span className={styles.clientInfo} data-label="Email">{client.email}</span>
+                        <span className={styles.clientInfo} data-label="Phone">{client.phone || '-'}</span>
+                        <span className={styles.clientInfo} data-label="Last Visit">
                             {client.last_visit ? new Date(client.last_visit).toLocaleDateString() : 'Never'}
                         </span>
-                        <div className={styles.actions}>
+                        <div className={styles.actions} data-label="Actions">
                             <button
                                 className={`${styles.iconBtn} ${styles.deleteBtn}`}
                                 onClick={() => handleDeleteClick(client.id)}

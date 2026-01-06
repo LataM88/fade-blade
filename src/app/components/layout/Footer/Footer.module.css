@@ -118,3 +118,30 @@
     flex-direction: column;
     gap: 8px;
 }
+
+@media (max-width: 960px) {
+    .footerContent {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .footerContentLeft,
+    .footerContentLeftCenterLinks,
+    .footerContentRightCenterLinks,
+    .footerContentRightLinks {
+        width: 100%;
+        text-align: center;
+        align-items: center;
+    }
+
+    .footerContentLeftCenterHead,
+    .footerContentRightCenterHead,
+    .footerContentRightHead {
+        text-align: center;
+        width: 100%;
+    }
+
+    .footerContentLeftSocialLinks {
+        justify-content: center;
+    }
+}

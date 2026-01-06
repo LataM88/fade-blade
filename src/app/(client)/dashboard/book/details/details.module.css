@@ -163,3 +163,38 @@
     margin-top: auto;
     padding-top: 32px;
 }
+
+@media (max-width: 768px) {
+    .content {
+        flex-direction: column;
+        padding: 16px;
+        padding-bottom: 80px;
+    }
+
+    .detailsHeader {
+        font-size: 20px;
+    }
+
+    .formRow {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .textarea {
+        min-height: 80px;
+    }
+
+    .detailsBtnContainer {
+        flex-direction: column-reverse;
+        gap: 16px;
+        padding-top: 16px;
+    }
+
+    .detailsBtnContainer button {
+        width: 100%;
+    }
+
+    .summaryContainer {
+        width: 100%;
+    }
+}

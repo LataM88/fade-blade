@@ -4,6 +4,7 @@ import styles from './ContactSection.module.css';
 import { MapPin, Phone, Mail } from 'lucide-react';
 import Image from 'next/image';
 import Button from '../../ui/Button';
+import Input from '../../ui/Input';
 
 export default function ContactSection() {
     const [formData, setFormData] = useState({
@@ -55,38 +56,31 @@ export default function ContactSection() {
                     <div className={`${styles.card} ${styles.formCard}`}>
                         <h2>Ask us a question</h2>
                         <form className={styles.form} onSubmit={handleSubmit}>
-                            <div className={styles.inputGroup}>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    placeholder="Name"
-                                    className={styles.input}
-                                    value={formData.name}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
-                            <div className={styles.inputGroup}>
-                                <input
-                                    type="email"
-                                    name="email"
-                                    placeholder="Email"
-                                    className={styles.input}
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
-                            <div className={styles.inputGroup}>
-                                <input
-                                    type="tel"
-                                    name="phone"
-                                    placeholder="Phone"
-                                    className={styles.input}
-                                    value={formData.phone}
-                                    onChange={handleChange}
-                                />
-                            </div>
+                            <Input
+                                type="text"
+                                name="name"
+                                placeholder="Name"
+                                value={formData.name}
+                                onChange={handleChange}
+                                required
+                            />
+
+                            <Input
+                                type="email"
+                                name="email"
+                                placeholder="Email"
+                                value={formData.email}
+                                onChange={handleChange}
+                                required
+                            />
+
+                            <Input
+                                type="tel"
+                                name="phone"
+                                placeholder="Phone"
+                                value={formData.phone}
+                                onChange={handleChange}
+                            />
                             <div className={styles.inputGroup}>
                                 <textarea
                                     name="message"

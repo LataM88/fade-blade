@@ -115,3 +115,34 @@
 .iconBtn:hover {
     background-color: rgba(255, 255, 255, 0.1);
 }
+
+@media (max-width: 900px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .tableContainer {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .tableHeaderRow,
+    .tableRow {
+        display: grid;
+        min-width: 1000px;
+        grid-template-columns: 2fr 1fr 1fr 2fr 1fr 1fr;
+        gap: 1rem;
+        align-items: center;
+        white-space: nowrap;
+    }
+
+    .tableHeaderRow {
+        border-bottom: 1px solid var(--border-white-4);
+    }
+
+    .actions {
+        justify-content: flex-start;
+    }
+}

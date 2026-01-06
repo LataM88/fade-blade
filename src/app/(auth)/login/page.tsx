@@ -1,6 +1,7 @@
 'use client'
 import styles from "./login.module.css";
 import Button from "@/app/components/ui/Button";
+import Input from "@/app/components/ui/Input";
 import { Facebook, Apple, Chrome } from 'lucide-react';
 import Link from "next/link";
 import { useState } from "react";
@@ -75,13 +76,19 @@ export default function Login() {
                         </div>
                         <div className={styles.rightFormContainer}>
                             <form onSubmit={handleSubmit(onSubmit)} noValidate>
-                                <p>Email</p>
-                                <input type="email" {...register("email")} />
-                                {errors.email && <p style={{ color: 'red', fontSize: '0.8rem', marginTop: '4px' }}>{errors.email.message}</p>}
+                                <Input
+                                    label="Email"
+                                    type="email"
+                                    {...register("email")}
+                                    error={errors.email?.message}
+                                />
 
-                                <p>Password</p>
-                                <input type="password" {...register("password")} />
-                                {errors.password && <p style={{ color: 'red', fontSize: '0.8rem', marginTop: '4px' }}>{errors.password.message}</p>}
+                                <Input
+                                    label="Password"
+                                    type="password"
+                                    {...register("password")}
+                                    error={errors.password?.message}
+                                />
 
                                 <div className={styles.rememberMeContainer}>
                                     <input type="checkbox" id="rememberMe" />

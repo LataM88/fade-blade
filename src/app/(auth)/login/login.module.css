@@ -97,31 +97,7 @@
     width: 100%;
 }
 
-.rightFormContainer p {
-    color: var(--white);
-    margin-bottom: 8px;
-    font-size: 14px;
-    font-weight: 600;
-}
 
-.rightFormContainer input[type="email"],
-.rightFormContainer input[type="password"] {
-    width: 100%;
-    height: 48px;
-    border-radius: 8px;
-    background-color: var(--border-white-22);
-    border: none;
-    padding: 0 16px;
-    color: var(--white);
-    font-size: 14px;
-    outline: none;
-    transition: all 0.2s ease;
-    margin-bottom: 24px;
-}
-
-.rightFormContainer input:focus {
-    box-shadow: 0 0 0 2px var(--primary-yellow);
-}
 
 .rememberMeContainer {
     display: flex;
@@ -213,4 +189,46 @@
 
 .yellowLink:hover {
     opacity: 0.8;
+}
+
+@media (max-width: 960px) {
+    .container {
+        padding: 0 32px;
+        justify-content: center;
+    }
+
+    .leftImageContainer {
+        display: none;
+    }
+
+    .rightContainer {
+        width: 100%;
+        max-width: 480px;
+        margin-top: 0;
+    }
+
+    .rightContainerContent {
+        text-align: center;
+        align-items: center;
+    }
+
+    .rightContainerContent h1 {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mainContainer {
+        padding: 0;
+    }
+
+    .container {
+        padding: 0 20px;
+    }
+
+    .rightFormActions {
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+    }
 }

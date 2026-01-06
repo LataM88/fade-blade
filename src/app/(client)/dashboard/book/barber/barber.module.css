@@ -94,3 +94,36 @@
     flex-direction: row;
     gap: 32px;
 }
+
+@media (max-width: 768px) {
+    .content {
+        padding: 16px;
+        padding-bottom: 80px;
+    }
+
+    .barbersCard {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .barberCard {
+        width: 100%;
+        margin: 0;
+    }
+
+    .btnContainer {
+        margin-top: 32px;
+        flex-direction: column-reverse;
+        gap: 16px;
+    }
+
+    .btnContainer button {
+        width: 100%;
+    }
+
+    .btnContainers {
+        flex-direction: column;
+        width: 100%;
+        gap: 16px;
+    }
+}

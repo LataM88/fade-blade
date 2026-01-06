@@ -52,3 +52,25 @@
     gap: 32px;
     margin-left: 32px;
 }
+
+@media (max-width: 960px) {
+    .navLinks {
+        display: none;
+        /* Placeholder for hamburger menu */
+    }
+
+    .navContainer {
+        margin-right: 24px;
+    }
+
+    .logo {
+        margin-left: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        width: 60px;
+        height: 60px;
+    }
+}

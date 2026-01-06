@@ -56,7 +56,8 @@
     margin: 0 auto;
 }
 
-.input,
+
+
 .textarea {
     width: 100%;
     background: rgba(255, 255, 255, 0.15);
@@ -66,17 +67,23 @@
     color: var(--white);
     font-size: 16px;
     font-family: inherit;
+    outline: none;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    min-height: 120px;
+    resize: vertical;
 }
 
-.input::placeholder,
+.textarea:focus {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: var(--primary-yellow);
+    box-shadow: 0 0 0 1px var(--primary-yellow);
+}
+
 .textarea::placeholder {
     color: var(--text-white-75);
 }
 
-.textarea {
-    min-height: 120px;
-    resize: vertical;
-}
 
 .buttonContainer {
     display: flex;

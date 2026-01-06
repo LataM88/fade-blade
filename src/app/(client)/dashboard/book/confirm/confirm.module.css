@@ -8,13 +8,44 @@
 .card {
     background-color: #4a4a4a;
     border-radius: 16px;
-    padding: 0;
-    width: 100%;
-    max-width: 600px;
+    margin: 0;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+    .content {
+        padding: 16px;
+        padding-bottom: 120px;
+        /* Extra space for bottom navbar and floating buttons */
+        height: auto;
+    }
+
+    .confirmCard {
+        padding: 16px;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .serviceItem {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .buttonGroup {
+        flex-direction: column-reverse;
+        /* Stack buttons */
+        gap: 16px;
+        margin-top: 32px;
+    }
+
+    .buttonGroup button {
+        width: 100%;
+    }
 }
 
 .cardHeader {

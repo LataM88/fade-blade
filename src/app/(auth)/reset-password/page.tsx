@@ -2,6 +2,7 @@
 
 import styles from "./reset-password.module.css";
 import Button from "@/app/components/ui/Button";
+import Input from "@/app/components/ui/Input";
 import { useState } from "react";
 
 export default function ResetPassword() {
@@ -45,8 +46,13 @@ export default function ResetPassword() {
                 <h1>Reset your <span className={styles.separator}>password</span></h1>
                 <div className={styles.formContainer}>
                     <form onSubmit={handleSubmit}>
-                        <p>Email</p>
-                        <input name="email" type="email" required placeholder="Enter your email" />
+                        <Input
+                            label="Email"
+                            name="email"
+                            type="email"
+                            required
+                            placeholder="Enter your email"
+                        />
 
                         {message && <p style={{ color: "#FFB52B" }} className={styles.success}>{message}</p>}
                         {error && <p style={{ color: "red" }} className={styles.error}>{error}</p>}

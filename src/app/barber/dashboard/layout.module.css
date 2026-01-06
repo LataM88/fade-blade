@@ -1,0 +1,26 @@
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.mainContent {
+    flex: 1;
+    margin-left: 250px;
+    min-height: 100vh;
+    background-color: #121212;
+    color: #fff;
+    width: calc(100% - 250px);
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .mainContent {
+        margin-left: 0;
+        width: 100%;
+        margin-bottom: 80px;
+        /* Space for bottom nav */
+    }
+}

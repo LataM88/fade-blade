@@ -90,6 +90,59 @@
 }
 
 .aboutDescription3 {
-    margin-top: -64px;
     text-align: right;
+}
+
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 40px;
+    }
+
+    .aboutContent {
+        flex-direction: column;
+        align-items: center;
+        gap: 64px;
+    }
+
+    .aboutImage {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin: 0 !important;
+    }
+
+    .aboutImage1,
+    .aboutImage2,
+    .aboutImage3 {
+        margin: 0 !important;
+        position: relative;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .aboutImage2 {
+        display: none;
+        /* Hide decorative overlapped images on mobile/tablet for simplicity */
+    }
+
+    .aboutImage1 {
+        width: 100%;
+        max-width: 539px;
+    }
+
+    .aboutText {
+        flex-direction: column;
+        gap: 32px;
+        margin: 0;
+        text-align: center;
+    }
+
+    .aboutDescription1,
+    .aboutDescription2,
+    .aboutDescription3 {
+        margin: 0 !important;
+        text-align: center;
+        max-width: 600px;
+    }
 }

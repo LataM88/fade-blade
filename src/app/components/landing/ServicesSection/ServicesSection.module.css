@@ -80,3 +80,34 @@
     margin-right: 64px;
     border-radius: 16px;
 }
+
+@media (max-width: 1024px) {
+    .mainWrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .rightContentImage {
+        display: none;
+    }
+
+    .services {
+        margin-left: 0;
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .serviceItem {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .servicePrice {
+        align-self: flex-end;
+    }
+}

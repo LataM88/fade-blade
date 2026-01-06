@@ -275,3 +275,50 @@
     font-weight: bold;
     color: var(--primary-yellow);
 }
+
+@media (max-width: 1200px) {
+    .statsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 1024px) {
+    .mainGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .heroCard {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .heroContent h1 {
+        font-size: 1.5rem;
+    }
+
+    .statsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .actionBtn {
+        font-size: 0.9rem;
+        padding: 0.75rem;
+    }
+
+    .scheduleItem {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .clientInfo h4 {
+        margin-bottom: 0.25rem;
+    }
+}

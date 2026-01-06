@@ -1,6 +1,7 @@
 'use client'
 import styles from "./signup.module.css";
 import Button from "@/app/components/ui/Button";
+import Input from "@/app/components/ui/Input";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase/client";
 import { useState } from "react";
@@ -93,25 +94,40 @@ export default function Signup() {
                     <p>Create your account and book your next cut in seconds</p>
                     <div className={styles.leftFormContainer}>
                         <form onSubmit={handleSubmit(onSubmit)} noValidate>
-                            <p>Name</p>
-                            <input type="text" {...register("name")} />
-                            {errors.name && <p style={{ color: 'red', fontSize: '0.8rem', marginTop: '4px' }}>{errors.name.message}</p>}
+                            <Input
+                                label="Name"
+                                type="text"
+                                {...register("name")}
+                                error={errors.name?.message}
+                            />
 
-                            <p>Second name</p>
-                            <input type="text" {...register("secondName")} />
-                            {errors.secondName && <p style={{ color: 'red', fontSize: '0.8rem', marginTop: '4px' }}>{errors.secondName.message}</p>}
+                            <Input
+                                label="Second name"
+                                type="text"
+                                {...register("secondName")}
+                                error={errors.secondName?.message}
+                            />
 
-                            <p>Email</p>
-                            <input type="email" {...register("email")} />
-                            {errors.email && <p style={{ color: 'red', fontSize: '0.8rem', marginTop: '4px' }}>{errors.email.message}</p>}
+                            <Input
+                                label="Email"
+                                type="email"
+                                {...register("email")}
+                                error={errors.email?.message}
+                            />
 
-                            <p>Password</p>
-                            <input type="password" {...register("password")} />
-                            {errors.password && <p style={{ color: 'red', fontSize: '0.8rem', marginTop: '4px' }}>{errors.password.message}</p>}
+                            <Input
+                                label="Password"
+                                type="password"
+                                {...register("password")}
+                                error={errors.password?.message}
+                            />
 
-                            <p>Phone number</p>
-                            <input type="tel" {...register("phoneNumber")} />
-                            {errors.phoneNumber && <p style={{ color: 'red', fontSize: '0.8rem', marginTop: '4px' }}>{errors.phoneNumber.message}</p>}
+                            <Input
+                                label="Phone number"
+                                type="tel"
+                                {...register("phoneNumber")}
+                                error={errors.phoneNumber?.message}
+                            />
 
                             {globalError && <p style={{ color: 'red', marginTop: '10px' }}>{globalError}</p>}
                             {success && <p style={{ color: '#FFB52B', marginTop: '10px' }}>{success}</p>}

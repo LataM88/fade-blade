@@ -154,3 +154,38 @@
     margin-top: 64px;
     margin-left: 64px;
 }
+
+@media (max-width: 1024px) {
+
+    .upperWrapper,
+    .lowerWrapper {
+        flex-direction: column;
+        margin: 0;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .upperImage1,
+    .upperImage2,
+    .upperImage3,
+    .upperImage4,
+    .lowerImage1,
+    .lowerImage2,
+    .lowerImage3,
+    .lowerImage4 {
+        margin: 0 !important;
+        width: 100%;
+        max-width: 341px;
+        border-radius: 16px;
+    }
+
+    .lowerWrapper {
+        margin-top: 20px;
+    }
+
+    .btnWrapper {
+        margin-left: 0;
+        display: flex;
+        justify-content: center;
+    }
+}

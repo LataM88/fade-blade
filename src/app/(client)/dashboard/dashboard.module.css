@@ -337,3 +337,91 @@
     font-size: 16px !important;
     margin-bottom: 16px !important;
 }
+
+@media (max-width: 768px) {
+    .mainContainer {
+        padding: 12px;
+        padding-bottom: 90px;
+        /* Space for bottom navbar */
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .container {
+        gap: 24px;
+        width: 100%;
+    }
+
+    .containerInfo {
+        flex-direction: column;
+        gap: 16px;
+        width: 100%;
+        margin-bottom: 32px;
+    }
+
+    .infoCard {
+        width: 100%;
+        margin-right: 0;
+        height: auto;
+        padding: 24px;
+        min-height: unset;
+    }
+
+    .infoCard .infoIcon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .appointmentsCards {
+        flex-direction: column;
+        width: 100%;
+        gap: 16px;
+    }
+
+    .appointmentCard {
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .historyTable {
+        overflow-x: auto;
+        width: 100%;
+        display: block;
+    }
+
+    .tableHeader,
+    .tableRow {
+        min-width: 500px;
+        /* Slightly reduced */
+        padding: 16px;
+    }
+
+    .favoritesCards {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .appointmentsHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        width: 100%;
+    }
+
+    .appointmentsHeader h2 {
+        font-size: 22px;
+        /* Smaller font */
+        width: 100%;
+    }
+
+    .appointmentsHeader a {
+        width: 100%;
+    }
+
+    .appointmentsHeader button {
+        width: 100%;
+        font-size: 14px;
+        padding: 12px;
+    }
+}
