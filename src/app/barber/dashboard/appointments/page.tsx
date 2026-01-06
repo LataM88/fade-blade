@@ -60,7 +60,8 @@ export default function BarberAppointmentsPage() {
                     services: Array.isArray(app.services) ? app.services[0] : app.services
                 }));
 
-                formattedAppointments.sort((a, b) => new Date(b.start_time).getTime() - new Date(a.start_time).getTime());
+
+                formattedAppointments.sort((a, b) => new Date(a.start_time).getTime() - new Date(b.start_time).getTime());
 
                 setAppointments(formattedAppointments);
             }
@@ -116,8 +117,26 @@ export default function BarberAppointmentsPage() {
     };
 
     const filteredAppointments = appointments.filter(app => {
-        if (filter === 'all') return true;
-        return app.status === filter;
+        const now = new Date();
+        const appDate = new Date(app.start_time);
+
+        if (filter === 'all') {
+            return appDate >= now;
+        }
+
+        if (filter === 'completed') {
+            return app.status === 'completed' || (app.status === 'confirmed' && appDate < now);
+        }
+
+        if (filter === 'cancelled') {
+            return app.status === 'cancelled';
+        }
+
+        if (filter === 'confirmed') {
+            return app.status === 'confirmed' && appDate >= now;
+        }
+
+        return app.status === filter && appDate >= now;
     });
 
     const getStatusClass = (status: string) => {

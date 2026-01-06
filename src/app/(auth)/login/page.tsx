@@ -99,12 +99,7 @@ export default function Login() {
                                     </Button>
                                 </div>
                                 <div className={styles.rightFormOtherSign}>
-                                    <p>Or sign in with</p>
-                                    <div className={styles.rightFormSocials}>
-                                        <Facebook size={50} />
-                                        <Apple size={50} />
-                                        <Chrome size={50} />
-                                    </div>
+
                                 </div>
                                 <div className={styles.rightFormActions}>
                                     <div className={styles.rightFormActionsColumn}>

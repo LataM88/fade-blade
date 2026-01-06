@@ -103,7 +103,7 @@ export default function BarberProfile({ barber }: BarberProfileProps) {
                     </div>
                 </div>
                 <div className={styles.barberWork}>
-                    <h2>Max's Masterpieces</h2>
+                    <h2>{barber.name2} Masterpieces</h2>
                     <div className={styles.barberWorkList}>
                         <div className={styles.barberWorkItem}>
                             <img src="../../images/gallery/haircut1.jpg" alt="haircut" />
@@ -120,7 +120,7 @@ export default function BarberProfile({ barber }: BarberProfileProps) {
                     </div>
                 </div>
                 <div className={styles.barberAppointment}>
-                    <h2>Meet Max</h2>
+                    <h2>Meet {barber.name2}</h2>
                     <div className={styles.bookingContainer}>
                         <div className={styles.rightSection}>
                             <div className={styles.rightSectionContent}>
@@ -134,9 +134,6 @@ export default function BarberProfile({ barber }: BarberProfileProps) {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className={styles.calendarWrapper}>
-                            <Calendar onChange={setDate} value={date} className={styles.reactCalendar} />
                         </div>
                     </div>
                 </div>

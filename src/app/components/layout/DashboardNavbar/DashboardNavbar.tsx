@@ -2,17 +2,30 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import styles from './DashboardNavbar.module.css';
+import { createBrowserClient } from '@supabase/ssr';
+import { LogOut } from 'lucide-react';
 
 export default function DashboardNavbar() {
     const pathname = usePathname();
+    const router = useRouter();
+    const supabase = createBrowserClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    );
 
     const isActive = (path: string) => {
         if (path === '/dashboard') {
             return pathname === '/dashboard';
         }
         return pathname.startsWith(path);
+    };
+
+    const handleLogout = async () => {
+        await supabase.auth.signOut();
+        router.push('/');
+        router.refresh();
     };
 
     return (
@@ -41,6 +54,13 @@ export default function DashboardNavbar() {
                 >
                     Profile
                 </Link>
+                <button
+                    onClick={handleLogout}
+                    className={styles.logoutBtn}
+                    title="Log Out"
+                >
+                    <LogOut size={20} />
+                </button>
             </div>
         </nav>
     );

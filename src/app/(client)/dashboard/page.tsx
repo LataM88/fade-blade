@@ -252,7 +252,6 @@ export default function Dashboard() {
                                     </div>
                                     <div className={styles.cardCountdown}>
                                         <div className={styles.timeLeft}>{getDaysUntil(apt.start_time)}</div>
-                                        <Button variant="reset-password" className={styles.cancelButton}>X</Button>
                                     </div>
                                 </div>
                             ))
@@ -268,7 +267,6 @@ export default function Dashboard() {
                             <span>Barber</span>
                             <span>Service</span>
                             <span>Price</span>
-                            <span>Actions</span>
                         </div>
                         {pastAppointments.length === 0 ? (
                             <div className={styles.tableRow} style={{ justifyContent: 'center', color: 'var(--text-white-50)' }}>No previous visits.</div>
@@ -279,10 +277,6 @@ export default function Dashboard() {
                                     <span>{apt.profiles?.first_name}</span>
                                     <span>{apt.services?.name}</span>
                                     <span>{formatPrice(apt.services?.price || 0)}</span>
-                                    <div className={styles.actions}>
-                                        <Button variant="sign-in">↻</Button>
-                                        <Button variant="sign-in">★</Button>
-                                    </div>
                                 </div>
                             ))
                         )}
@@ -298,7 +292,7 @@ export default function Dashboard() {
                             <p>Founder & Barber</p>
                             <div className={styles.rating}>★ 4.9</div>
                             <p className={styles.visitCount}>{barberCounts.max} visits with you</p>
-                            <Button variant="new-appointment">Book now</Button>
+                            <Link href={`/dashboard/book/service`}><Button variant="new-appointment">Book now</Button></Link>
                         </div>
                         <div className={styles.favoriteCard}>
                             <img src="/images/barbers/barber-kevin.png" alt="Kevin" className={styles.barberAvatar} />
@@ -306,7 +300,7 @@ export default function Dashboard() {
                             <p>Founder & Barber</p>
                             <div className={styles.rating}>★ 4.9</div>
                             <p className={styles.visitCount}>{barberCounts.kevin} visits with you</p>
-                            <Button variant="new-appointment">Book now</Button>
+                            <Link href={`/dashboard/book/service`}><Button variant="new-appointment">Book now</Button></Link>
                         </div>
                         <div className={styles.favoriteCard}>
                             <img src="/images/barbers/barber-jake.png" alt="Jake" className={styles.barberAvatar} />
@@ -314,7 +308,7 @@ export default function Dashboard() {
                             <p>Founder & Barber</p>
                             <div className={styles.rating}>★ 4.9</div>
                             <p className={styles.visitCount}>{barberCounts.jake} visits with you</p>
-                            <Button variant="new-appointment">Book now</Button>
+                            <Link href={`/dashboard/book/service`}><Button variant="new-appointment">Book now</Button></Link>
                         </div>
                     </div>
                 </div>

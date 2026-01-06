@@ -1,6 +1,28 @@
+'use client';
 import styles from './ServicesSection.module.css';
+import { supabase } from '@/lib/supabase/client';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 export default function ServicesSection() {
+    const [services, setServices] = useState<{ name: string; price: number }[]>([]);
+
+    const fetchServices = async () => {
+        const { data } = await supabase.from('services').select('name, price');
+        if (data) {
+            setServices(data);
+        }
+    };
+
+    useEffect(() => {
+        fetchServices();
+    }, []);
+
+    const getPrice = (name: string) => {
+        const service = services.find(s => s.name.toLowerCase() === name.toLowerCase());
+        return service ? service.price : '-';
+    };
+
     return (
         <section id="services" className={styles.section}>
             <div className={styles.container}>
@@ -16,7 +38,7 @@ export default function ServicesSection() {
                                 <p>precise cut tailored to the client’s face shape and style.</p>
                             </div>
                         </div>
-                        <div className={styles.servicePrice}>30€</div>
+                        <div className={styles.servicePrice}>{getPrice('Classic Haircut')}€</div>
                     </div>
                     <div className={styles.serviceItem}>
                         <div className={styles.leftContent}>
@@ -26,7 +48,7 @@ export default function ServicesSection() {
                                 <p>beard styling, contour shaving, and care with balm or oil.</p>
                             </div>
                         </div>
-                        <div className={styles.servicePrice}>15€</div>
+                        <div className={styles.servicePrice}>{getPrice('Beard Trim & Shaping')}€</div>
                     </div>
                     <div className={styles.serviceItem}>
                         <div className={styles.leftContent}>
@@ -36,7 +58,7 @@ export default function ServicesSection() {
                                 <p>traditional straight-razor shave with a hot towel and facial massage.</p>
                             </div>
                         </div>
-                        <div className={styles.servicePrice}>25€</div>
+                        <div className={styles.servicePrice}>{getPrice('Hot Towel Shave')}€</div>
                     </div>
                     <div className={styles.serviceItem}>
                         <div className={styles.leftContent}>
@@ -46,7 +68,7 @@ export default function ServicesSection() {
                                 <p>quick and even clipper cut with one length.</p>
                             </div>
                         </div>
-                        <div className={styles.servicePrice}>20€</div>
+                        <div className={styles.servicePrice}>{getPrice('Buzz Cut')}€</div>
                     </div>
                     <div className={styles.serviceItem}>
                         <div className={styles.leftContent}>
@@ -56,7 +78,7 @@ export default function ServicesSection() {
                                 <p>haircut + beard + grooming + head massage</p>
                             </div>
                         </div>
-                        <div className={styles.servicePrice}>55€</div>
+                        <div className={styles.servicePrice}>{getPrice('VIP Package')}€</div>
                     </div>
                     <div className={styles.serviceItem}>
                         <div className={styles.leftContent}>
@@ -66,7 +88,7 @@ export default function ServicesSection() {
                                 <p>subtle gray blending for a natural look.</p>
                             </div>
                         </div>
-                        <div className={styles.servicePrice}>40€</div>
+                        <div className={styles.servicePrice}>{getPrice('Camouflage/Coloring')}€</div>
                     </div>
                 </div>
                 <div className={styles.rightContent}>

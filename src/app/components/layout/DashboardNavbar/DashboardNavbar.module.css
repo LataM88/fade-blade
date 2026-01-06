@@ -44,3 +44,23 @@
     border-radius: 8px;
     font-weight: 600;
 }
+
+.logoutBtn {
+    background: transparent;
+    border: 1px solid var(--border-white-22);
+    color: var(--text-white-75);
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.logoutBtn:hover {
+    color: #FF5252;
+    border-color: #FF5252;
+    background-color: rgba(255, 82, 82, 0.1);
+}
