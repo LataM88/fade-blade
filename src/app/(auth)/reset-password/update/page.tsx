@@ -2,6 +2,7 @@
 
 import styles from "../reset-password.module.css";
 import Button from "@/app/components/ui/Button";
+import Input from "@/app/components/ui/Input";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -64,21 +65,21 @@ export default function UpdatePassword() {
                 <h1>Update your <span className={styles.separator}>password</span></h1>
                 <div className={styles.formContainer}>
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <p>New Password</p>
-                        <input
+                        <Input
+                            label="New Password"
                             type="password"
                             placeholder="Enter new password"
                             {...register("password")}
+                            error={errors.password?.message}
                         />
-                        {errors.password && <p style={{ color: "red", fontSize: "0.8rem", marginTop: "4px" }}>{errors.password.message}</p>}
 
-                        <p>Confirm Password</p>
-                        <input
+                        <Input
+                            label="Confirm Password"
                             type="password"
                             placeholder="Confirm new password"
                             {...register("confirmPassword")}
+                            error={errors.confirmPassword?.message}
                         />
-                        {errors.confirmPassword && <p style={{ color: "red", fontSize: "0.8rem", marginTop: "4px" }}>{errors.confirmPassword.message}</p>}
 
                         {message && <p style={{ color: "#FFB52B" }} className={styles.success}>{message}</p>}
                         {globalError && <p style={{ color: "red" }} className={styles.error}>{globalError}</p>}

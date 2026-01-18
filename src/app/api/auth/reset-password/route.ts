@@ -34,9 +34,15 @@ export async function POST(request: Request) {
             }
         );
 
-        const origin = process.env.NEXT_PUBLIC_SITE_URL
-            ? process.env.NEXT_PUBLIC_SITE_URL
-            : new URL(request.url).origin;
+        let origin = process.env.NEXT_PUBLIC_SITE_URL;
+
+        if (!origin && process.env.VERCEL_URL) {
+            origin = `https://${process.env.VERCEL_URL}`;
+        }
+
+        if (!origin) {
+            origin = request.headers.get('origin') || new URL(request.url).origin;
+        }
 
         const { error } = await supabase.auth.resetPasswordForEmail(email, {
             redirectTo: `${origin}/auth/callback?next=/reset-password/update`,
