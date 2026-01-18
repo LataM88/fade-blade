@@ -39,3 +39,7 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Deployment
+Open [https://fade-blade.vercel.app](https://fade-blade.vercel.app) to see the result.
+Barber dashboard login and password: barber@demo.com / Barber123!

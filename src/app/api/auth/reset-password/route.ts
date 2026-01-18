@@ -34,7 +34,9 @@ export async function POST(request: Request) {
             }
         );
 
-        const origin = new URL(request.url).origin;
+        const origin = process.env.NEXT_PUBLIC_SITE_URL
+            ? process.env.NEXT_PUBLIC_SITE_URL
+            : new URL(request.url).origin;
 
         const { error } = await supabase.auth.resetPasswordForEmail(email, {
             redirectTo: `${origin}/auth/callback?next=/reset-password/update`,

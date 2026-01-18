@@ -30,9 +30,16 @@ export async function GET(request: Request) {
         );
         const { error } = await supabase.auth.exchangeCodeForSession(code);
         if (error) {
-            return NextResponse.redirect(`${requestUrl.origin}/sign-in?error=auth_callback_error`);
+            const origin = process.env.NEXT_PUBLIC_SITE_URL
+                ? process.env.NEXT_PUBLIC_SITE_URL
+                : requestUrl.origin;
+            return NextResponse.redirect(`${origin}/sign-in?error=auth_callback_error`);
         }
     }
 
-    return NextResponse.redirect(`${requestUrl.origin}${next}`);
+    const origin = process.env.NEXT_PUBLIC_SITE_URL
+        ? process.env.NEXT_PUBLIC_SITE_URL
+        : requestUrl.origin;
+
+    return NextResponse.redirect(`${origin}${next}`);
 }
