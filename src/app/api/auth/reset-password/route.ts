@@ -41,6 +41,14 @@ export async function POST(request: Request) {
         }
 
         if (!origin) {
+            const forwardedHost = request.headers.get('x-forwarded-host');
+            const forwardedProto = request.headers.get('x-forwarded-proto');
+            if (forwardedHost) {
+                origin = `${forwardedProto || 'https'}://${forwardedHost}`;
+            }
+        }
+
+        if (!origin) {
             origin = request.headers.get('origin') || new URL(request.url).origin;
         }
 
