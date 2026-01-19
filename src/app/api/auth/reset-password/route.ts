@@ -66,7 +66,7 @@ export async function POST(request: Request) {
         if (error) {
             console.error("Supabase error:", error);
             return NextResponse.json(
-                { message: error.message },
+                { message: `${error.message} (Redirect URL was: ${redirectTo})` },
                 { status: 400 }
             );
         }
