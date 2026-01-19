@@ -52,12 +52,9 @@ export async function POST(request: Request) {
             origin = request.headers.get('origin') || new URL(request.url).origin;
         }
 
-        // Remove trailing slash if present
         origin = origin.replace(/\/$/, "");
 
         const redirectTo = `${origin}/auth/callback?next=/reset-password/update`;
-        console.log("Reset Password Origin:", origin);
-        console.log("Reset Password Redirect URL:", redirectTo);
 
         const { error } = await supabase.auth.resetPasswordForEmail(email, {
             redirectTo,
@@ -66,7 +63,7 @@ export async function POST(request: Request) {
         if (error) {
             console.error("Supabase error:", error);
             return NextResponse.json(
-                { message: `${error.message} (Redirect URL was: ${redirectTo})` },
+                { message: error.message },
                 { status: 400 }
             );
         }
